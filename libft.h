@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:52:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/21 17:25:51 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/22 21:26:20 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strdup(const char *s1);
 void	*ft_calloc(size_t count, size_t size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
