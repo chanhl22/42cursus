@@ -6,7 +6,7 @@
 #    By: chanhlee </var/mail/chanhlee>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/25 20:51:11 by chanhlee          #+#    #+#              #
-#    Updated: 2021/01/25 22:44:54 by chanhlee         ###   ########.fr        #
+#    Updated: 2021/01/25 23:15:16 by chanhlee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,4 +18,25 @@ FUNCTIONS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c \
 			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 
+OBJS = $(FUNCTION0S:.c=.o)
 
+CC = gcc
+
+RM = rm -f
+
+CFLAGS = -Wall -Wextra -Werror
+
+NAME = libft.a
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
+clean: $(RM) $(OBJS)
+
+fclean: $(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re bonus
