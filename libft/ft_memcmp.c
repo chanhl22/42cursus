@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 16:00:18 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/18 13:56:58 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/26 21:50:10 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_memcmp(const void *ptr1, const void *ptr2, size_t n)
 {
-	unsigned char	*prt_srt1;
-	unsigned char	*prt_str2;
+	unsigned char	*ptr_str1;
+	unsigned char	*ptr_str2;
 	size_t			i;
 
 	ptr_str1 = (unsigned char*)ptr1;
-	ptr_srt2 = (unsigned char*)ptr2;
+	ptr_str2 = (unsigned char*)ptr2;
 	i = 0;
 	while (i < n)
 	{
