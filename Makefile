@@ -6,7 +6,7 @@
 #    By: chanhlee </var/mail/chanhlee>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/25 20:51:11 by chanhlee          #+#    #+#              #
-#    Updated: 2021/01/26 00:02:13 by chanhlee         ###   ########.fr        #
+#    Updated: 2021/01/26 12:36:07 by chanhlee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,13 @@ FUNCTIONS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c \
 			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 
+BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
+		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\
+		ft_lstmap.c
+
 OBJS = $(FUNCTION0S:.c=.o)
+
+OBJS_BONUS = $(BONUS:.c=.o)
 
 CC = gcc
 
@@ -33,7 +39,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-clean: $(RM) $(OBJS)
+bonus: $(OBJS) $(OBJS_BONUS)
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+
+clean: $(RM) $.o
 
 fclean: $(RM) $(NAME)
 
