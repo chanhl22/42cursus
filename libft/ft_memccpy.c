@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 14:57:18 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/26 20:47:28 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/01/14 15:22:02 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/01/18 13:56:00 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
 	size_t i;
 
-	if (!s)
-	{
-		return ;
-	}
 	i = 0;
-	while (n--)
+	if (!dest || !src)
+		return (null);
+	while (i < n)
 	{
-		*(char *)(s + i) = 0;
+		dest[i] = src[i];
+		if (src[i] == (unsigned char)c)
+			return ((void*)dest + i + 1);
 		i++;
 	}
+	return (NULL);
 }

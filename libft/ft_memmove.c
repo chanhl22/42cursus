@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 14:57:18 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/26 20:47:28 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/01/14 17:06:43 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/01/18 13:57:49 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	size_t i;
+	unsigned char	*dest_ptr;
+	unsigned char	*src_ptr;
+	size_t			i;
 
-	if (!s)
+	dest_ptr = (unsigned char*)dest;
+	src_ptr = (unsigned char*)src;
+	if (dest <= src)
 	{
-		return ;
+		i = 0;
+		while (i < n)
+		{
+			dest_ptr[len] = src_ptr[len];
+			i++;
+		}
 	}
-	i = 0;
-	while (n--)
+	else
 	{
-		*(char *)(s + i) = 0;
-		i++;
+		i = n - 1;
+		while (i >= 0)
+		{
+			dest_ptr[i] = src_ptr[i];
+			i--;
+		}
 	}
+	return (dest);
 }
