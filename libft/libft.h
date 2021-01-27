@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:52:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/26 12:22:33 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/27 15:16:53 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <unistd.h>
+# include <stdlib.h>
 # include <string.h>
 
 void	ft_bzero(void *s, size_t n);

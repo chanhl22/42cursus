@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 20:40:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/22 21:29:04 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/27 15:11:08 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	char	*prt;
+	char	*ptr;
 
 	if (s == NULL)
 		return (NULL);
-	prt = (char*)malloc(sizeof(*s) * (len + 1));
-	if (str == NULL)
+	ptr = (char*)malloc(sizeof(*s) * (len + 1));
+	if (ptr == NULL)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		prt[i] = s[start + i];
+		ptr[i] = s[start + i];
 		i++;
 	}
-	str[i] = '\0';
+	ptr[i] = '\0';
 	return (ptr);
 }

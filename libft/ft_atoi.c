@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 19:04:31 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/18 19:12:29 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:45:29 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_atoi(const char *nptr)
 		i++;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		nr = nr * 10 + nptr[i] - '0';
+		n = n * 10 + nptr[i] - '0';
 		i++;
 	}
 	return (n * sign);
