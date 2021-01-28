@@ -6,8 +6,14 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:54:29 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/26 11:54:32 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/28 14:13:08 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+void ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
+}

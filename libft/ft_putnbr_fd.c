@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:54:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/26 13:06:47 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/28 14:33:55 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,14 @@
 
 void ft_putnbr_fd(int n, int fd)
 {
-	return 0;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = n * -1;
+	}
+	if (n >= 9)
+	{
+		ft_putnbr_fd((n / 10), fd);
+	}
+	ft_putchar_fd((n % 10) + '0', fd);
 }
