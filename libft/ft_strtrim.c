@@ -3,37 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee </var/mail/chanhlee>              +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 00:17:18 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/27 15:14:09 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/01/28 21:33:51 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/01/28 21:40:39 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t start;
-	size_t end;
-	char *res;
+	size_t	begin;
+	size_t	end;
+	char	*result;
+	int		i;
 
 	if (!s1)
 		return (NULL);
 	if (!set)
 		return (ft_strdup(s1));
-	while (s1[start] != '\0' && ft_strchr(set, s1[start]))
-		start++;
-	while (s1[end -1] && ft_strchr(set, s1[end-1]))
+	begin = 0;
+	while (s1[begin] != '\0' && ft_strchr(set, s1[begin]))
+		begin++;
+	end = ft_strlen(s1);
+	while (s1[end - 1] && ft_strchr(set, s1[end - 1]))
 	{
-		if(end -1 < 1)
-			break;
 		end--;
 	}
-	if (start > end)
-		return (ft_strdup(""));
-	if(!(res = (char*)malloc(sizeof(char)*(end - start +1))))
-		return(NULL);
-	ft_strlcpy(res,s1+start,end-start+1);
-	return (res);
+	if (!(result = (char*)malloc(sizeof(char) * (end - begin + 1))))
+		return (NULL);
+	i = 0;
+	while (begin < end)
+		result[i++] = s1[start++];
+	result[i] = '\0';
+	return (result);
 }

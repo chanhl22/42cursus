@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:54:03 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/28 14:07:23 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/28 21:37:22 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int i;
 

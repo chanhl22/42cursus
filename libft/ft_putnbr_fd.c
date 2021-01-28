@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:54:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/28 14:33:55 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/28 21:37:35 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #inlcude "libft.h"
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n < 0)
 	{
