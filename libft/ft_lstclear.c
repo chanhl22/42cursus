@@ -6,8 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:54:08 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/29 15:54:09 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/30 10:57:26 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+void ft_lstclear(t_list **lst, void (*del)(void *))
+{
+
+}
