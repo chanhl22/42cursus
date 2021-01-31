@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:54:44 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/30 22:53:41 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/01/31 17:55:09 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list  *new_head;
-	t_list  *new_next;
-	t_list  *curr;
-	
-	if (lst == NULL || f == NULL || del == NULL)
+	t_list *new_list;
+	t_list *curr;
+	t_list *temp;
+
+	if (!lst || !f)
 		return (NULL);
-	if ((new_head = ft_lstnew(f(lst->content))) == NULL)
+	if (!(new_list = ft_lstnew(f(lst->content))))
 		return (NULL);
-	curr = new_head;
+	curr = new_list;
 	lst = lst->next;
 	while (lst)
 	{
-		if ((new_next = ft_lstnew(f(lst->content))) == NULL)
+		if (!(temp = ft_lstnew(f(lst->content))))
 		{
-			ft_lstclear(&new_head, del);
+			ft_lstclear(&newlst, del);
 			return (NULL);
 		}
-		curr->next = new_next;
-		curr = new_next;
-		lst = lst->next;
+		curr->next = temp;
+		curr = temp;
+		lst = lst->next;	
 	}
-	return (new_head);
+	return (new_list);
 }
