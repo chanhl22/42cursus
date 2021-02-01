@@ -6,11 +6,11 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:54:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/28 21:37:35 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 10:18:32 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#inlcude "libft.h"
+#include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:52:43 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/27 18:11:08 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 09:58:37 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	number_of_word(char const *s, char c)
 
 	i = 0;
 	if (*s == '\0')
-		return (NULL);
+		return (0);
+	count = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
@@ -44,6 +45,7 @@ char **ft_split(char const *s, char c)
 	char **word;
 	int i;
 	int num;
+	int len;
 
 	num = number_of_word(s,c);
 	i = 0;
@@ -52,11 +54,11 @@ char **ft_split(char const *s, char c)
 	{
 		while (*s == c)
 			s++;
-		len = length_of_word(s,c)
-		word[i] = (char*)malloc(sizeof(char) * (len + 1))
+		len = length_of_word(s,c);
+		word[i] = (char*)malloc(sizeof(char) * (len + 1));
 		ft_strlcpy(word[i], s, len + 1);
 		i++;
 	}
-	word[i] = '\0';
+	word[i] = NULL;
 	return (word);
 }

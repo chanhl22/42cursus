@@ -6,7 +6,7 @@
 #    By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 19:57:43 by chanhlee          #+#    #+#              #
-#    Updated: 2021/01/26 20:42:43 by chanhlee         ###   ########.fr        #
+#    Updated: 2021/02/01 21:57:48 by chanhlee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,9 @@ bonus: $(OBJS) $(OBJS_BONUS)
 
 clean:
 	$(RM) $(OBJS)
+
+clean_bonus:
+	$(RM) $(OBJS_BONUS)
 
 fclean:
 	$(RM) $(NAME)

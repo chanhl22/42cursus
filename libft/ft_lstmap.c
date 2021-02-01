@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:54:44 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/31 17:55:09 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 10:25:26 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	{
 		if (!(temp = ft_lstnew(f(lst->content))))
 		{
-			ft_lstclear(&newlst, del);
+			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
 		curr->next = temp;

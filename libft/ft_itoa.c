@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:53:04 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/28 21:38:36 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 10:14:56 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ char *ft_itoa(int n)
 	}
 	if (sign == -1)
 		str[0] = '-';
-	return (c);
+	return (str);
 }

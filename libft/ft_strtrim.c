@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 21:33:51 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/28 21:49:17 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 09:49:44 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (s1[begin] != '\0' && ft_strchr(set, s1[begin]))
 		begin++;
 	end = ft_strlen(s1);
-	while (end > start && ft_strchr(set, s1[end - 1]))
+	while (end > begin && ft_strchr(set, s1[end - 1]))
 	{
 		end--;
 	}
@@ -35,7 +35,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	i = 0;
 	while (begin < end)
-		result[i++] = s1[start++];
+		result[i++] = s1[begin++];
 	result[i] = '\0';
 	return (result);
 }

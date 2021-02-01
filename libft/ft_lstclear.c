@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:54:08 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/30 14:31:55 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 10:24:29 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst)
 	{
-		tmp = (*lst)->next
+		tmp = (*lst)->next;
 		ft_lstdelone(*lst, del);
 		*lst = tmp;
 	}

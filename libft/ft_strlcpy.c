@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:28:11 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/18 13:58:31 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/01 23:52:57 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ size_t	ft_strlcpy(char *dest, const char *source, size_t destsize)
 
 	i = 0;
 	j = 0;
-	while (source[j] && j < destsize - 1 && destsize > 0)
+	if (dest == 0 || source == 0)
+		return (0);
+	if (destsize > 0)
 	{
-		dest[j] = source[j];
-		j++;
-	}
-	if ((destsize - j) > 0)
+		while (source[j] && j < destsize - 1)
+		{
+			dest[j] = source[j];
+			j++;
+		}
 		dest[j] = '\0';
+	}
 	while (source[i])
 		i++;
 	return (i);
