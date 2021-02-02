@@ -6,13 +6,27 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:53:18 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/29 20:55:50 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/02 20:15:17 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
+
+{
+
+		if (lst)
+
+					while (lst->next)
+
+									lst = lst->next;
+
+			return (lst);
+
+}
+
+/*t_list *ft_lstlast(t_list *lst)
 {
 	while (lst != NULL)
 	{
@@ -21,4 +35,4 @@ t_list *ft_lstlast(t_list *lst)
 			return (lst);
 	}
 	return (lst);
-}
+}*/

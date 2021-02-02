@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:52:43 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/01 09:58:37 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/02 17:22:57 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,22 @@ char **ft_split(char const *s, char c)
 	char **word;
 	int i;
 	int num;
-	int len;
+	int j;
 
 	num = number_of_word(s,c);
 	i = 0;
-	word = (char**)malloc(sizeof(char) * (num + 1));
+	if (!(word = (char**)malloc(sizeof(char) * (num + 1))))
+		return (NULL);
+	j = 0;
 	while (i < num)
 	{
-		while (*s == c)
-			s++;
-		len = length_of_word(s,c);
-		word[i] = (char*)malloc(sizeof(char) * (len + 1));
-		ft_strlcpy(word[i], s, len + 1);
+		while (s[j] == c && s[j] != '\0')
+			j++;
+		word[i] = ft_substr(s, j, length_of_word(s,c));
+		while (s[j] != '\0' && s[j] != c)
+			j++;
+		//word[i] = (char*)malloc(sizeof(char) * (len + 1));
+		//ft_strlcpy(word[i], s, len + 1);
 		i++;
 	}
 	word[i] = NULL;

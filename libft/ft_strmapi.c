@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:53:28 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/01/28 11:26:58 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/02 17:29:00 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int len;
 	int i;
 
+	if (!s)
+		return (NULL);
 	len = ft_strlen(s);
 	if (!(str = (char*)malloc(sizeof(char)*(len + 1))))
 		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
 		str[i] = f(i, s[i]);
 		i++;
