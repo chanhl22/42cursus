@@ -6,16 +6,16 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:52:43 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/03 15:06:25 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/03 15:17:27 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	number_of_word(char const *s, char c)
+int		number_of_word(char const *s, char c)
 {
-	int i;
-	int count;
+	int		i;
+	int		count;
 
 	i = 0;
 	count = 0;
@@ -35,7 +35,7 @@ int	number_of_word(char const *s, char c)
 
 char	*make_word(char *res, char const *s, int j, int word_len)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (word_len > 0)
@@ -50,9 +50,9 @@ char	*make_word(char *res, char const *s, int j, int word_len)
 
 char	**ft_split2(char **word, char const *s, char c, int num)
 {
-	int i;
-	int j;
-	int word_len;
+	int		i;
+	int		j;
+	int		word_len;
 
 	i = 0;
 	j = 0;
@@ -78,12 +78,12 @@ char	**ft_split2(char **word, char const *s, char c, int num)
 
 char	**ft_split(char const *s, char c)
 {
-	char **word;
-	int num;
-		
+	char	**word;
+	int		num;
+
 	if (s == NULL)
 		return (NULL);
-	num = number_of_word(s,c);
+	num = number_of_word(s, c);
 	if (!(word = (char**)malloc(sizeof(char*) * (num + 1))))
 		return (NULL);
 	ft_split2(word, s, c, num);

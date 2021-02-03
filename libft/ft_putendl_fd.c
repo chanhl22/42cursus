@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:54:29 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/02 12:55:32 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/03 15:12:16 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s)
 		return ;
