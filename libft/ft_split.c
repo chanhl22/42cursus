@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:52:43 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/02 17:22:57 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/03 15:06:25 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,51 +18,74 @@ int	number_of_word(char const *s, char c)
 	int count;
 
 	i = 0;
-	if (*s == '\0')
-		return (0);
 	count = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
+			i++;
+		else
+		{
 			count++;
-		i++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
 	}
 	return (count);
 }
 
-int length_of_word(char const *s, char c)
+char	*make_word(char *res, char const *s, int j, int word_len)
 {
-	int len;
+	int i;
 
-	len = 0;
-	while (s[len] != '\0' && s[len] != c)
-		len++;
-	return (len);
+	i = 0;
+	while (word_len > 0)
+	{
+		res[i] = s[j - word_len];
+		i++;
+		word_len--;
+	}
+	res[i] = '\0';
+	return (res);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split2(char **word, char const *s, char c, int num)
 {
-	char **word;
 	int i;
-	int num;
 	int j;
+	int word_len;
 
-	num = number_of_word(s,c);
 	i = 0;
-	if (!(word = (char**)malloc(sizeof(char) * (num + 1))))
-		return (NULL);
 	j = 0;
-	while (i < num)
+	word_len = 0;
+	while (s[j] && i < num)
 	{
-		while (s[j] == c && s[j] != '\0')
+		while (s[j] && s[j] == c)
 			j++;
-		word[i] = ft_substr(s, j, length_of_word(s,c));
-		while (s[j] != '\0' && s[j] != c)
+		while (s[j] && s[j] != c)
+		{
 			j++;
-		//word[i] = (char*)malloc(sizeof(char) * (len + 1));
-		//ft_strlcpy(word[i], s, len + 1);
+			word_len++;
+		}
+		if (!(word[i] = (char *)malloc(sizeof(char) * (word_len + 1))))
+			return (NULL);
+		make_word(word[i], s, j, word_len);
+		word_len = 0;
 		i++;
 	}
 	word[i] = NULL;
+	return (word);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char **word;
+	int num;
+		
+	if (s == NULL)
+		return (NULL);
+	num = number_of_word(s,c);
+	if (!(word = (char**)malloc(sizeof(char*) * (num + 1))))
+		return (NULL);
+	ft_split2(word, s, c, num);
 	return (word);
 }
