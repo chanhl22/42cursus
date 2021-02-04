@@ -6,11 +6,25 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:52:43 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/03 15:17:27 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/02/04 16:05:06 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char	**ft_free(char **word)
+{
+	int		i;
+
+	i = 0;
+	while (word[i])
+	{
+		free(word[i]);
+		i++;
+	}
+	free(word);
+	return (NULL);
+}
 
 int		number_of_word(char const *s, char c)
 {
@@ -67,7 +81,7 @@ char	**ft_split2(char **word, char const *s, char c, int num)
 			word_len++;
 		}
 		if (!(word[i] = (char *)malloc(sizeof(char) * (word_len + 1))))
-			return (NULL);
+			return (ft_free(word));
 		make_word(word[i], s, j, word_len);
 		word_len = 0;
 		i++;
