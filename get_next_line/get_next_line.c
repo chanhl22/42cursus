@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/24 17:12:17 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/02 00:37:00 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,61 @@
 #include <unistd.h>
 #define BUFSIZE 512
 
-/*
-int main()
+size_t	ft_strlen(const char *str)
 {
-   char buffer[BUFSIZE];
-   int fd;
-   ssize_t nread;
-   long total = 0;
-   char *backup:q
+	size_t i;
 
-   if ((fd = open("test.txt", O_RDONLY)) == -1)
-	   exit(1);
-   while ((nread = read(fd, buffer, BUFSIZE)) > 0)
-	   total += nread;
-   close(fd);
-   printf ("Number of characters in testfile : %ld\n", total);
-   exit(0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
-*/
+
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+	int		i;
+
+	if (!(s2 = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
+}
 
 int get_next_line(int fd, char **line)
 {
 	int nread;
-	char buffer[BUFSIZE];
+	char buf[BUFSIZE];
 
 	if (fd < 0)
 		return (-1);
 	while ((nread = read(fd, buf, BUFSIZE)) > 0)
 	{
-		if (
+		buf[nread] = '\0';
+		*line = ft_strdup(buf);
 	}
+	return (0);
+}
 
+int main(void)
+{
+	char *line = 0;
+	int ret;
+	int fd;
+
+	fd = open("./test.txt", O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		printf("%s\n", line);
+		//free(line);
+	}
+	printf("%s\n", line);
+	//free(line);
+	return (0);
 }
