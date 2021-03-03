@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/03 11:59:30 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/03 23:18:04 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strdup(const char *s1)
 	char	*s2;
 	int		i;
 
-	if (!(s2 = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+	if(!(s2 = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
 		return (NULL);
 	i = 0;
 	while (s1[i] != '\0')
@@ -41,6 +41,43 @@ char	*ft_strdup(const char *s1)
 	}
 	s2[i] = '\0';
 	return (s2);
+}
+
+void	*ft_memcpy(void *dest, const void *source, size_t num)
+{
+	unsigned char	*src;
+	unsigned char	*dst;
+	size_t			i;
+
+	i = 0;
+	if (dest == NULL && source == NULL)
+		return (NULL);
+	src = (unsigned char *)source;
+	dst = (unsigned char *)dest;
+	while (i < num)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (dest);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	int		s1_len;
+	int		s2_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	if (!(str = (char*)malloc(sizeof(char) * (s1_len + s2_len + 1))))
+		return (NULL);
+	ft_memcpy(str, s1, s1_len);
+	ft_memcpy(str + s1_len, s2, s2_len);
+	str[s1_len + s2_len] = '\0';
+	return (str);
 }
 
 int is_newline(char *s)
@@ -57,6 +94,11 @@ int is_newline(char *s)
 	return (-1);
 }
 
+/*int until_newline(**backup, **line)
+{
+	*line = ft_strdup(*backup);
+}*/
+
 int get_next_line(int fd, char **line)
 {
 	int nread;
@@ -68,11 +110,12 @@ int get_next_line(int fd, char **line)
 	while ((nread = read(fd, buf, BUFSIZE)) > 0)
 	{
 		buf[nread] = '\0';
-		backup[fd] = strjoin(backup[fd],buf);
+		backup[fd] = ft_strjoin(backup[fd],buf);
 		if (is_newline(backup[fd]) >= 0)
 		{
-			*line = ft_strdup(buf);
+			*line = ft_strdup(backup[fd]);
 			return (1);
+			//return (utill_newline(&backup[fd],line));
 		}
 	}
 	return (0);
@@ -88,9 +131,9 @@ int main(void)
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		printf("%s\n", line);
-		//free(line);
+		free(line);
 	}
 	printf("%s\n", line);
-	//free(line);
+	free(line);
 	return (0);
 }
