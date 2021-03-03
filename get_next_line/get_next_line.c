@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/03 23:18:04 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 00:14:37 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#define BUFSIZE 5
+#define BUFSIZE 512
 
 size_t	ft_strlen(const char *str)
 {
@@ -103,14 +103,17 @@ int get_next_line(int fd, char **line)
 {
 	int nread;
 	char buf[BUFSIZE];
-	static char *backup[32];
+	static char *backup[4999];
 
 	if (fd < 0)
 		return (-1);
 	while ((nread = read(fd, buf, BUFSIZE)) > 0)
 	{
 		buf[nread] = '\0';
+		printf("bbb\n");
 		backup[fd] = ft_strjoin(backup[fd],buf);
+		printf("aaa\n");
+		printf("%s\n",backup[fd]);
 		if (is_newline(backup[fd]) >= 0)
 		{
 			*line = ft_strdup(backup[fd]);
