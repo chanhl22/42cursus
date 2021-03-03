@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/02 23:25:17 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:59:30 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int get_next_line(int fd, char **line)
 	{
 		buf[nread] = '\0';
 		backup[fd] = strjoin(backup[fd],buf);
-		if (is_newline(buf)>=0)
+		if (is_newline(backup[fd]) >= 0)
 		{
 			*line = ft_strdup(buf);
 			return (1);
