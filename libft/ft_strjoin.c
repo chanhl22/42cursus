@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 19:16:51 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/02 12:50:07 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 11:49:43 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		s1_len;
 	int		s2_len;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
+	else if (!s1 || !s2)
+		return (!(s1) ? ft_strdup(s2) : ft_strdup(s1));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	if (!(str = (char*)malloc(sizeof(char) * (s1_len + s2_len + 1))))

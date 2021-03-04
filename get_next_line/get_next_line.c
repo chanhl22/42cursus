@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/04 00:14:37 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 11:41:50 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		s1_len;
 	int		s2_len;
 
-	if (!s1 || !s2)
+	printf("%s\n",s2);
+	if (!s1 && !s2)
 		return (NULL);
-	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
+	printf("1~~~~~%d\n",s2_len);
+	s1_len = ft_strlen(s1);
+	//s2_len = ft_strlen(s2);
+	printf("1~~~~~%d\n",s2_len);
+	printf("2~~~~~%d\n",s1_len);
 	if (!(str = (char*)malloc(sizeof(char) * (s1_len + s2_len + 1))))
 		return (NULL);
 	ft_memcpy(str, s1, s1_len);
 	ft_memcpy(str + s1_len, s2, s2_len);
 	str[s1_len + s2_len] = '\0';
+	printf("~~~%s\n",str);
 	return (str);
 }
 
