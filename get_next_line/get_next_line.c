@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/04 13:42:39 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:43:01 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,12 @@ int until_newline(char **backup, char **line, int i)
 	return (1);
 }
 
+int finish_line(char **backup, char **line)
+{
+	*line = *backup;
+	return (0);
+}
+
 int get_next_line(int fd, char **line)
 {
 	int nread;
@@ -125,7 +131,7 @@ int get_next_line(int fd, char **line)
 			return (until_newline(&backup[fd], line, i));
 		}
 	}
-	return (0);
+	return (finish_line(&backup[fd], line));
 }
 
 int main(void)
