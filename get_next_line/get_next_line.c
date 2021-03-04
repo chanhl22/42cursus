@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/04 11:41:50 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 12:00:20 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#define BUFSIZE 512
+#define BUFSIZE 5
 
 size_t	ft_strlen(const char *str)
 {
@@ -68,21 +68,17 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		s1_len;
 	int		s2_len;
 
-	printf("%s\n",s2);
 	if (!s1 && !s2)
 		return (NULL);
-	s2_len = ft_strlen(s2);
-	printf("1~~~~~%d\n",s2_len);
+	else if (!(s1) || !(s2))
+		return (!(s1) ? ft_strdup(s2) : ft_strdup(s1));
 	s1_len = ft_strlen(s1);
-	//s2_len = ft_strlen(s2);
-	printf("1~~~~~%d\n",s2_len);
-	printf("2~~~~~%d\n",s1_len);
+	s2_len = ft_strlen(s2);
 	if (!(str = (char*)malloc(sizeof(char) * (s1_len + s2_len + 1))))
 		return (NULL);
 	ft_memcpy(str, s1, s1_len);
 	ft_memcpy(str + s1_len, s2, s2_len);
 	str[s1_len + s2_len] = '\0';
-	printf("~~~%s\n",str);
 	return (str);
 }
 
@@ -116,10 +112,7 @@ int get_next_line(int fd, char **line)
 	while ((nread = read(fd, buf, BUFSIZE)) > 0)
 	{
 		buf[nread] = '\0';
-		printf("bbb\n");
 		backup[fd] = ft_strjoin(backup[fd],buf);
-		printf("aaa\n");
-		printf("%s\n",backup[fd]);
 		if (is_newline(backup[fd]) >= 0)
 		{
 			*line = ft_strdup(backup[fd]);
