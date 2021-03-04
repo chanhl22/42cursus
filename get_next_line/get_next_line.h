@@ -6,12 +6,12 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:43:06 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/03 22:04:29 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 18:17:37 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-#define LIBFT_H
+#ifndef GET_NEXT_LINE_H
+#define GET_NEXT_LINE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,6 +22,8 @@
 int				get_next_line(int fd, char **line);
 
 size_t			ft_strlen(const char *s);
-char			*ft_strdup(char *s1);
+char			*ft_strdup(const char *s1);
+void			*ft_memcpy(void *dest, const void *source, size_t num);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif
