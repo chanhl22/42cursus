@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/04 12:00:20 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/04 13:42:39 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,23 @@ int is_newline(char *s)
 	return (-1);
 }
 
-/*int until_newline(**backup, **line)
+int until_newline(char **backup, char **line, int i)
 {
+	char *temp;
+
+	(*backup)[i] = '\0';
 	*line = ft_strdup(*backup);
-}*/
+	temp = ft_strdup(*backup + i + 1);
+	*backup = temp;
+	return (1);
+}
 
 int get_next_line(int fd, char **line)
 {
 	int nread;
 	char buf[BUFSIZE];
 	static char *backup[4999];
+	int i;
 
 	if (fd < 0)
 		return (-1);
@@ -113,11 +120,9 @@ int get_next_line(int fd, char **line)
 	{
 		buf[nread] = '\0';
 		backup[fd] = ft_strjoin(backup[fd],buf);
-		if (is_newline(backup[fd]) >= 0)
+		if ((i = is_newline(backup[fd])) >= 0)
 		{
-			*line = ft_strdup(backup[fd]);
-			return (1);
-			//return (utill_newline(&backup[fd],line));
+			return (until_newline(&backup[fd], line, i));
 		}
 	}
 	return (0);
