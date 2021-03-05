@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/05 20:09:58 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/05 22:49:16 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int		until_newline(char **backup, char **line, int i)
 	(*backup)[i] = '\0';
 	*line = ft_strdup(*backup);
 	temp = ft_strdup(*backup + i + 1);
+	//free(*backup)
 	*backup = temp;
+	//free(temp);
 	return (1);
 }
 
@@ -42,6 +44,7 @@ int		finish_line(char **backup, char **line)
 	if (*backup)
 	{
 		*line = *backup;
+		free(*backup);
 		*backup = 0;
 		return (0);
 	}
@@ -56,7 +59,7 @@ int		get_next_line(int fd, char **line)
 	static char	*backup[4999];
 	int			i;
 
-	if (fd < 0 || (BUFFER_SIZE <= 0))
+	if (fd < 0 || (BUFFER_SIZE <= 0) || !line)
 		return (-1);
 	while ((nread = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
@@ -70,9 +73,9 @@ int		get_next_line(int fd, char **line)
 	return (finish_line(&backup[fd], line));
 }
 
-/*int main(void)
+int main(void)
 {
-	char *line = 0;
+	char *line;
 	int ret;
 	int fd;
 
@@ -85,4 +88,4 @@ int		get_next_line(int fd, char **line)
 	printf("%s\n", line);
 	free(line);
 	return (0);
-}*/
+}
