@@ -6,21 +6,21 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:43:06 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/05 19:49:36 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:58:07 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 5
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 int				get_next_line(int fd, char **line);
 

@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/05 19:51:00 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/05 20:09:58 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int is_newline(char *s)
+int		is_newline(char *s)
 {
 	int i;
 
@@ -20,13 +20,13 @@ int is_newline(char *s)
 	while (s[i])
 	{
 		if (s[i] == '\n')
-				return (i);
+			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int until_newline(char **backup, char **line, int i)
+int		until_newline(char **backup, char **line, int i)
 {
 	char *temp;
 
@@ -37,7 +37,7 @@ int until_newline(char **backup, char **line, int i)
 	return (1);
 }
 
-int finish_line(char **backup, char **line)
+int		finish_line(char **backup, char **line)
 {
 	if (*backup)
 	{
@@ -46,22 +46,22 @@ int finish_line(char **backup, char **line)
 		return (0);
 	}
 	*line = ft_strdup("");
-	return (0);	
+	return (0);
 }
 
-int get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
-	int nread;
-	char buf[BUFFER_SIZE + 1];
-	static char *backup[4999];
-	int i;
+	int			nread;
+	char		buf[BUFFER_SIZE + 1];
+	static char	*backup[4999];
+	int			i;
 
 	if (fd < 0 || (BUFFER_SIZE <= 0))
 		return (-1);
 	while ((nread = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[nread] = '\0';
-		backup[fd] = ft_strjoin(backup[fd],buf);
+		backup[fd] = ft_strjoin(backup[fd], buf);
 		if ((i = is_newline(backup[fd])) >= 0)
 		{
 			return (until_newline(&backup[fd], line, i));
