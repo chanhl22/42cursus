@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/05 19:16:35 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:19:41 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int finish_line(char **backup, char **line)
 		*backup = 0;
 		return (0);
 	}
-	*line = ft_strdup("");
+	//*line = ft_strdup("");
 	return (0);	
 }
 
