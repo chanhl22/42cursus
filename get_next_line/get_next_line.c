@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/05 19:40:08 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:51:00 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int finish_line(char **backup, char **line)
 int get_next_line(int fd, char **line)
 {
 	int nread;
-	char buf[BUFSIZE];
+	char buf[BUFFER_SIZE + 1];
 	static char *backup[4999];
 	int i;
 
-	if (fd < 0)
+	if (fd < 0 || (BUFFER_SIZE <= 0))
 		return (-1);
-	while ((nread = read(fd, buf, BUFSIZE)) > 0)
+	while ((nread = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[nread] = '\0';
 		backup[fd] = ft_strjoin(backup[fd],buf);

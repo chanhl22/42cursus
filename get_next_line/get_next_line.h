@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:43:06 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/04 18:17:37 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:49:36 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#define BUFSIZE 5
+
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 5
+#endif
 
 int				get_next_line(int fd, char **line);
 
