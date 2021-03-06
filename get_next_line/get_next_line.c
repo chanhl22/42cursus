@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/06 14:38:41 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/06 15:13:28 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		finish_line(char **backup, char **line)
 
 	if (*backup && (last_len = is_newline(*backup)) >= 0)
 	{
-		return until_newline(backup , line, last_len);
+		return (until_newline(backup, line, last_len));
 	}
 	else if (*backup)
 	{
@@ -78,20 +78,3 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	return (finish_line(&backup[fd], line));
 }
-
-/*int main(void)
-{
-	char *line;
-	int ret;
-	int fd;
-
-	fd = open("./test.txt", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	printf("%s\n", line);
-	free(line);
-	return (0);
-}*/
