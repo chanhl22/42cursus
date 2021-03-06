@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/05 22:49:16 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:20:45 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int		until_newline(char **backup, char **line, int i)
 	(*backup)[i] = '\0';
 	*line = ft_strdup(*backup);
 	temp = ft_strdup(*backup + i + 1);
-	//free(*backup)
+	free(*backup)
 	*backup = temp;
-	//free(temp);
 	return (1);
 }
 
@@ -44,7 +43,6 @@ int		finish_line(char **backup, char **line)
 	if (*backup)
 	{
 		*line = *backup;
-		free(*backup);
 		*backup = 0;
 		return (0);
 	}
@@ -73,7 +71,7 @@ int		get_next_line(int fd, char **line)
 	return (finish_line(&backup[fd], line));
 }
 
-int main(void)
+/*int main(void)
 {
 	char *line;
 	int ret;
@@ -88,4 +86,4 @@ int main(void)
 	printf("%s\n", line);
 	free(line);
 	return (0);
-}
+}*/
