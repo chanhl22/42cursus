@@ -1,3 +1,5 @@
+#include "get_next_line.h"
+
 int main(void)
 {
 	char *line;
@@ -12,5 +14,6 @@ int main(void)
 	}
 	printf("%s\n", line);
 	free(line);
+	while (1);
 	return (0);
 }
