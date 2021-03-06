@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 09:42:53 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/06 20:11:35 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/06 23:40:50 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		get_next_line(int fd, char **line)
 	char		buf[BUFFER_SIZE + 1];
 	static char	*backup[4999];
 	int			i;
-	char 		*tmp;
+	char		*tmp;
 
 	if (fd < 0 || (BUFFER_SIZE <= 0) || !line)
 		return (-1);
