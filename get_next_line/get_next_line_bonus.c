@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 15:21:33 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/06 15:22:08 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/03/07 16:06:18 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/03/07 16:06:40 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,21 @@ int		until_newline(char **backup, char **line, int i)
 
 	(*backup)[i] = '\0';
 	*line = ft_strdup(*backup);
+	if (*line == 0)
+	{
+		free(*backup);
+		*backup = 0;
+		return (-1);
+	}
 	temp = ft_strdup(*backup + i + 1);
+	if (temp == 0)
+	{
+		free(*backup);
+		*backup = 0;
+		return (-1);
+	}
 	free(*backup);
+	*backup = 0;
 	*backup = temp;
 	return (1);
 }
@@ -48,11 +61,18 @@ int		finish_line(char **backup, char **line)
 	}
 	else if (*backup)
 	{
-		*line = *backup;
+		*line = ft_strdup(*backup);
+		free(*backup);
 		*backup = 0;
 		return (0);
 	}
 	*line = ft_strdup("");
+	if (*line == 0)
+	{
+		free(*backup);
+		*backup = 0;
+		return (-1);
+	}
 	return (0);
 }
 
@@ -62,13 +82,19 @@ int		get_next_line(int fd, char **line)
 	char		buf[BUFFER_SIZE + 1];
 	static char	*backup[4999];
 	int			i;
+	char		*tmp;
 
 	if (fd < 0 || (BUFFER_SIZE <= 0) || !line)
 		return (-1);
 	while ((nread = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[nread] = '\0';
-		backup[fd] = ft_strjoin(backup[fd], buf);
+		tmp = ft_strjoin(backup[fd], buf);
+		free(backup[fd]);
+		backup[fd] = 0;
+		if (tmp == 0)
+			return (-1);
+		backup[fd] = tmp;
 		if ((i = is_newline(backup[fd])) >= 0)
 		{
 			return (until_newline(&backup[fd], line, i));
