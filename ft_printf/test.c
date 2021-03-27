@@ -19,6 +19,9 @@ void printNumbers(int args, ...)    // 가변 인자의 개수를 받음, ...로
 
 int main()
 {
+	int num = 123;
+	printf("%d\n",num);
+
     printNumbers(1, 10);                // 인수 개수 1개
     printNumbers(2, 10, 20);            // 인수 개수 2개
     printNumbers(3, 10, 20, 30);        // 인수 개수 3개
