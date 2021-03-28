@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/28 22:17:08 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/28 23:58:39 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_putnbr_fd(int n, int fd)
 {
 	int ret;
 
+	ret = 0;
 	if (n == -2147483648)
 	{
 		ft_putstr_fd("-2147483648", fd);
@@ -49,7 +50,7 @@ int	ft_putnbr_fd(int n, int fd)
 		}
 		if (n > 9)
 		{
-			ft_putnbr_fd((n / 10), fd);
+			ret += ft_putnbr_fd((n / 10), fd);
 		}
 		ret += ft_putchar_fd((n % 10) + '0', fd);
 	}
@@ -86,7 +87,6 @@ int print_data(va_list ap, t_opt *opt)
 	type = opt->type;
 	if (type == 'd')
 		ret += ft_putnbr_fd(va_arg(ap, int), 1);
-	printf("test : %d\n", ret);
 	return (ret);
 }
 
@@ -104,7 +104,6 @@ int find_format(char *format, va_list ap)
 	}
 	opt->type = *format;
 	ret += print_data(ap, opt);
-	printf("test1 : %d\n", ret);
 	return (ret);
 }
 
@@ -115,7 +114,6 @@ int	ft_printf(const char *restrict format, ...)
 
 	result = 0;
 	va_start(ap, format);
-	//printf("adfsdaf");
 	while (*format)
 	{
 		if (*format != '%')
@@ -126,6 +124,7 @@ int	ft_printf(const char *restrict format, ...)
 		else
 		{
 			result += find_format((char *)++format, ap);
+			format++;
 		}
 	}
 	va_end(ap);
@@ -135,8 +134,10 @@ int	ft_printf(const char *restrict format, ...)
 int main() 
 {
 	int num = 123;
-	
-	ft_printf("%d", num);
+	int size = 0;
+
+	size = ft_printf("%d", num);
+	printf("%d\n", size);
 	fflush(stdout);
 	printf("%d", num);
 	/*printf("hi");
