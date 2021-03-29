@@ -1,25 +1,48 @@
 #include <stdio.h>
 
 int main(){
-	int num = 123;
-	int size;
+	printf("[%.3d]\n", 1234);
+	printf("[%.3d]\n", 3);
 
-	size = printf("%d\n",num);
-	printf("%d",size);
-
-	printf("\n-----\n");
-
-	printf("%-7d\n", 12345);
-	//printf("%5.-2d", 9);
-	printf("%5.*d\n",-2 , 9);
-	//printf("%5.*d", -2, 9);
-	printf("%.d\n", 12345);
+	printf("[%.03d]\n", 1234);
+	printf("[%.03d]\n", 3);
 	
-	printf("\n-----\n");
+	printf("[%.3d]\n", 0);
+	printf("[%.03d]\n", 0);
 
-	printf("[%.0d]\n", 0);
-	printf("%.d\n", 0);
-	printf("%.d\n", 1);
-	printf("[%.*d]\n",0 ,0);
+	printf("--\n");
+	printf("[%-.*d]\n",-3, 0);
+	//printf("[%.0*d]\n",3, 0);
 
+	//printf("[%.0*d]\n",3, 123);
+	//printf("[%.0*d]\n",3, 3);
+
+	printf("[%-.*d]\n",-3, 1234);
+	printf("[%-.*d]\n",-3, 3);
+
+	printf("--\n");
+	printf("[%.0d]\n", 3);
+	printf("[% .0d]\n", 123);
+	//printf("[%. 0d]\n", 3);
+	printf("[%0.00d]\n", 3);
+	printf("[%-.00d]\n", 123);
+	
+	printf("--\n");
+	printf("[%.d]\n", 123);
+	printf("[%6.d]\n", 0);
+	//printf("[%. d]\n", 123);
+	printf("[%-.06d]\n", 123);
+	printf("[%6.0d]\n", 0);
+	//printf("[%.-d]\n", 123);
+
+	//printf("[%.-0d]\n", 3);
+	//printf("[%.-3d]\n", 123);
+	//printf("[%.-3d]\n", 3);
+	
+	//printf("[%. 3d]\n", 123);
+	//printf("[%. 3d]\n", 3);	
+	
+	//printf("[% .3d]\n", 0);
+	//printf("[% .3d]\n", 123);
+	//printf("[% .3d]\n", 3);
 }
