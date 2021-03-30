@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/28 23:58:39 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:53:22 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int print_data(va_list ap, t_opt *opt)
 	return (ret);
 }
 
-int find_format(char *format, va_list ap)
+int check_format(char *format, va_list ap)
 {
 	t_opt	*opt;
 	int ret;
@@ -107,13 +107,12 @@ int find_format(char *format, va_list ap)
 	return (ret);
 }
 
-int	ft_printf(const char *restrict format, ...)
+int	parsing(va_list ap, char *format)
 {
-	va_list ap;
 	int result;
+	t_opt *opt;
 
 	result = 0;
-	va_start(ap, format);
 	while (*format)
 	{
 		if (*format != '%')
@@ -123,23 +122,41 @@ int	ft_printf(const char *restrict format, ...)
 		}
 		else
 		{
-			result += find_format((char *)++format, ap);
+			init_opt(opt);
+			while (*format && !ft_strchr(TYPE, *format))
+			{
+				result += check_format((char *)++format, ap);
+			}
 			format++;
 		}
 	}
+	return (result);
+}
+
+int	ft_printf(const char *restrict format, ...)
+{
+	va_list ap;
+	int result;
+
+	result = 0;
+	va_start(ap, format);
+	result = parsing(ap, format);
 	va_end(ap);
 	return (result);
 }
 
 int main() 
 {
-	int num = 123;
+	//int num = 123;
 	int size = 0;
 
-	size = ft_printf("%d", num);
-	printf("%d\n", size);
-	fflush(stdout);
-	printf("%d", num);
+	size = printf("hello %0*d", 5, 1);
+	printf("\n%d\n", size);
+	//ft_printf("hello %0*d", 5, 1);
+	//size = ft_printf("%d", num);
+	//printf("%d\n", size);
+	//fflush(stdout);
+	//printf("%d", num);
 	/*printf("hi");
 	ft_printf("hi");*/
 	//printf("hello %0*d", 5, 1, "world");
