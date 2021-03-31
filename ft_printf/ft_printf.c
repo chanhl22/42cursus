@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/31 17:03:35 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/31 23:38:09 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,47 @@ void init_opt(t_opt	*opt)
 	opt->type = 0;
 }
 
+ft_strlen
+
+ft_itao
+
+char	*update_width(char *buf, t_opt opt)
+{
+	char *padding;
+	if(opt->zero > 0)
+	{
+		padding = ft_calloc(sizeof(char), opt->width - ft_strlen(buf));
+		buf = ft_strjoin(padding, buf);
+	}
+	return (buf)
+	
+}
+
+int print_nbr(int n, t_opt *opt)
+{
+	char *buf;
+	int ret;
+
+	buf = ft_itoa(n);
+	buf = update_width(buf, opt);
+	ret = ft_putstr_fd(buf, 1);
+	return (ret);
+}
+
 int print_data(va_list ap, t_opt *opt)
 {
 	int ret;
-	char type;
-
+	
 	ret = 0;
-	type = opt->type;
-	if (type == 'd')
-		ret += ft_putnbr_fd(va_arg(ap, int), 1);
+	if (opt->type == 'd')
+		//ret += ft_putnbr_fd(va_arg(ap, int), 1);
+		ret += print_nbr(va_arg(ap, int), opt);
 	return (ret);
+}
+
+void	check_width(va_list ap, char *format, t_opt *opt)
+{
+	opt->width = va_arg(ap, int);
 }
 
 void	check_format(char *format, va_list ap, t_opt *opt)
@@ -101,6 +132,8 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 		opt->zero = 1;
 	else if (*format == '.')
 		opt->prec = 0;
+	else if (*format == '*')
+		check_width(ap, format, opt);
 }
 
 int	parsing(va_list ap, char *format)
@@ -121,12 +154,12 @@ int	parsing(va_list ap, char *format)
 		else
 		{
 			init_opt(opt);
+			++format;
 			while (*format && !ft_strchr(TYPE, *format))
 			{
-				check_format((char*)++format, ap, opt);
-				++format;
+				check_format((char*)format, ap, opt);
+				format++;
 			}
-			format++;
 			opt->type = *format;
 			result += print_data(ap, opt);
 		}
@@ -163,4 +196,3 @@ int main()
 	//printf("hello %0*d", 5, 1, "world");
 	//ft_printf("hello %0*d", 5, 1, "world");
 }
-
