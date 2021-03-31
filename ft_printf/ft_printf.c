@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/30 16:53:22 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:03:35 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,17 @@ int print_data(va_list ap, t_opt *opt)
 	return (ret);
 }
 
-int check_format(char *format, va_list ap)
+void	check_format(char *format, va_list ap, t_opt *opt)
 {
-	t_opt	*opt;
 	int ret;
 
-
 	ret = 0;
-	init_opt(opt);
-	while (!ft_strchr(TYPE, *format) && *format != '\0')
-	{
-		format++;
-	}
-	opt->type = *format;
-	ret += print_data(ap, opt);
-	return (ret);
+	if (*format == '-')
+		opt->minus = 1;
+	else if (*format == '0')
+		opt->zero = 1;
+	else if (*format == '.')
+		opt->prec = 0;
 }
 
 int	parsing(va_list ap, char *format)
@@ -113,6 +109,8 @@ int	parsing(va_list ap, char *format)
 	t_opt *opt;
 
 	result = 0;
+	if (!(opt = malloc(sizeof(t_opt))))
+		return (-1);
 	while (*format)
 	{
 		if (*format != '%')
@@ -125,9 +123,12 @@ int	parsing(va_list ap, char *format)
 			init_opt(opt);
 			while (*format && !ft_strchr(TYPE, *format))
 			{
-				result += check_format((char *)++format, ap);
+				check_format((char*)++format, ap, opt);
+				++format;
 			}
 			format++;
+			opt->type = *format;
+			result += print_data(ap, opt);
 		}
 	}
 	return (result);
@@ -140,23 +141,23 @@ int	ft_printf(const char *restrict format, ...)
 
 	result = 0;
 	va_start(ap, format);
-	result = parsing(ap, format);
+	result = parsing(ap, (char *)format);
 	va_end(ap);
 	return (result);
 }
 
 int main() 
 {
-	//int num = 123;
+	int num = 123;
 	int size = 0;
 
-	size = printf("hello %0*d", 5, 1);
-	printf("\n%d\n", size);
+	//size = printf("hello %0*d", 5, 1);
+	//printf("\n%d\n", size);
 	//ft_printf("hello %0*d", 5, 1);
-	//size = ft_printf("%d", num);
+	ft_printf("%d", 123);
+	fflush(stdout);
+	printf("%d", 123);
 	//printf("%d\n", size);
-	//fflush(stdout);
-	//printf("%d", num);
 	/*printf("hi");
 	ft_printf("hi");*/
 	//printf("hello %0*d", 5, 1, "world");

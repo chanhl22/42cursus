@@ -1,6 +1,12 @@
 #include <stdio.h>
 
 int main(){
+	printf("[%.d]\n", 123);
+	printf("[%1.d]\n", 123);
+	printf("[%2.d]\n", 123);
+	printf("[%4.d]\n", 123);
+
+	printf("[%.*d]\n",-1, 0);
 	printf("[%.3d]\n", 1234);
 	printf("[%.3d]\n", 3);
 
