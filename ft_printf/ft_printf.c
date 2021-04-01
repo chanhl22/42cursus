@@ -6,67 +6,28 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/31 23:38:09 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:36:13 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	putchar_fd(char c, int fd)
 {
 		return (write(fd, &c, 1));
 }
 
-void	ft_putstr_fd(char *s, int fd)
+int		putstr_fd(char *s)
 {
 	int i;
 
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		ft_putchar_fd(s[i], fd);
+		write(1, &s[i], 1);
 		i++;
 	}
-}
-
-int	ft_putnbr_fd(int n, int fd)
-{
-	int ret;
-
-	ret = 0;
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		ret = 10;
-	}
-	else
-	{
-		if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			n = n * -1;
-		}
-		if (n > 9)
-		{
-			ret += ft_putnbr_fd((n / 10), fd);
-		}
-		ret += ft_putchar_fd((n % 10) + '0', fd);
-	}
-	return (ret);
-}
-
-char	*ft_strchr(const char *str, int c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != (char)c)
-		i++;
-	if (str[i] == (char)c)
-		return ((char*)(str + i));
-	return (NULL);
+	return (i);
 }
 
 void init_opt(t_opt	*opt)
@@ -78,19 +39,16 @@ void init_opt(t_opt	*opt)
 	opt->type = 0;
 }
 
-ft_strlen
-
-ft_itao
-
-char	*update_width(char *buf, t_opt opt)
+char	*update_width(char *buf, t_opt *opt)
 {
 	char *padding;
 	if(opt->zero > 0)
 	{
-		padding = ft_calloc(sizeof(char), opt->width - ft_strlen(buf));
+		padding = ft_calloc(sizeof(char), opt->width - ft_strlen(buf) + 1);
+		printf("hello: %c\n", *padding);
 		buf = ft_strjoin(padding, buf);
 	}
-	return (buf)
+	return (buf);
 	
 }
 
@@ -100,8 +58,9 @@ int print_nbr(int n, t_opt *opt)
 	int ret;
 
 	buf = ft_itoa(n);
+	printf("hihi: %s\n",buf); // 1
 	buf = update_width(buf, opt);
-	ret = ft_putstr_fd(buf, 1);
+	ret = putstr_fd(buf);
 	return (ret);
 }
 
@@ -111,7 +70,6 @@ int print_data(va_list ap, t_opt *opt)
 	
 	ret = 0;
 	if (opt->type == 'd')
-		//ret += ft_putnbr_fd(va_arg(ap, int), 1);
 		ret += print_nbr(va_arg(ap, int), opt);
 	return (ret);
 }
@@ -148,7 +106,7 @@ int	parsing(va_list ap, char *format)
 	{
 		if (*format != '%')
 		{
-			result += ft_putchar_fd(*format, 1);
+			result += putchar_fd(*format, 1);
 			format++;
 		}
 		else
@@ -160,10 +118,11 @@ int	parsing(va_list ap, char *format)
 				check_format((char*)format, ap, opt);
 				format++;
 			}
-			opt->type = *format;
+			opt->type = *format++;
 			result += print_data(ap, opt);
 		}
 	}
+	free(opt);
 	return (result);
 }
 
@@ -184,12 +143,13 @@ int main()
 	int num = 123;
 	int size = 0;
 
-	//size = printf("hello %0*d", 5, 1);
-	//printf("\n%d\n", size);
-	//ft_printf("hello %0*d", 5, 1);
-	ft_printf("%d", 123);
+	size = printf("hello %0*d", 5, 1);
+	printf("\n%d\n", size);
 	fflush(stdout);
-	printf("%d", 123);
+	ft_printf("hello %0*d", 5, 1);
+	//ft_printf("%d", 123);
+	//fflush(stdout);
+	//printf("%d", 123);
 	//printf("%d\n", size);
 	/*printf("hi");
 	ft_printf("hi");*/

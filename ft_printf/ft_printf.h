@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:00:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/03/28 15:01:06 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:23:44 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "./libft/libft.h"
 
 # define TYPE "csdiupxX%"
 
