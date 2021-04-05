@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/01 20:36:13 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/05 21:48:24 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,44 @@ void init_opt(t_opt	*opt)
 	opt->type = 0;
 }
 
+char 	*update_padding(int zero, int size)
+{
+	char *padding;
+
+	padding = ft_calloc(sizeof(char), size + 1);
+	if (zero == 0)
+		ft_memset(padding, ' ', size);
+	else
+		ft_memset(padding, '0', size);
+	return (padding);
+}
+
+char	*update_rest(char *buf, char *padding)
+{
+	char *rest;
+
+	rest = ft_strjoin(padding, buf);
+	return (rest);
+}
+
+char	*update_prec(char *buf, t_opt *opt)
+{
+	char *padding;
+	
+	if ((opt->prec > -1) && (opt->prec > ft_strlen(buf)))
+	{
+		padding = update_padding(1, opt->prec - ft_strlen(buf));
+		buf = update_rest(buf, padding);
+	}
+	return (buf);
+}
+
 char	*update_width(char *buf, t_opt *opt)
 {
 	char *padding;
-	if(opt->zero > 0)
-	{
-		padding = ft_calloc(sizeof(char), opt->width - ft_strlen(buf) + 1);
-		printf("hello: %c\n", *padding);
-		buf = ft_strjoin(padding, buf);
-	}
+	
+	padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
+	buf = update_rest(buf, padding);
 	return (buf);
 	
 }
@@ -57,8 +86,11 @@ int print_nbr(int n, t_opt *opt)
 	char *buf;
 	int ret;
 
-	buf = ft_itoa(n);
-	printf("hihi: %s\n",buf); // 1
+	if (opt->prec == 0 && n == 0)
+		buf = ft_strdup("");
+	else
+		buf = ft_itoa(n);
+	buf = update_prec(buf ,opt);
 	buf = update_width(buf, opt);
 	ret = putstr_fd(buf);
 	return (ret);
@@ -74,9 +106,29 @@ int print_data(va_list ap, t_opt *opt)
 	return (ret);
 }
 
-void	check_width(va_list ap, char *format, t_opt *opt)
+void	check_width_prec(va_list ap, char format, t_opt *opt)
 {
-	opt->width = va_arg(ap, int);
+	if (ft_isdigit(format))
+	{
+		if (opt->prec == -1)
+			opt->width = opt->width * 10 + format - '0';
+		else
+			opt->prec = opt->prec * 10 + format - '0';
+	}
+	else if (format == '*')
+	{
+		if (opt->prec == -1)
+		{
+			opt->width = va_arg(ap, int);
+			//if (opt->width < 0)
+			//{
+			//	opt->minus = 1;
+			//	opt->width *= -1;
+			//}
+		}
+		else
+			opt->prec = va_arg(ap, int);
+	}
 }
 
 void	check_format(char *format, va_list ap, t_opt *opt)
@@ -90,8 +142,8 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 		opt->zero = 1;
 	else if (*format == '.')
 		opt->prec = 0;
-	else if (*format == '*')
-		check_width(ap, format, opt);
+	else if (ft_isdigit(*format) || *format == '*')
+		check_width_prec(ap, *format, opt);
 }
 
 int	parsing(va_list ap, char *format)
@@ -140,19 +192,19 @@ int	ft_printf(const char *restrict format, ...)
 
 int main() 
 {
-	int num = 123;
 	int size = 0;
+	int size2 = 0;
 
 	size = printf("hello %0*d", 5, 1);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	ft_printf("hello %0*d", 5, 1);
-	//ft_printf("%d", 123);
-	//fflush(stdout);
-	//printf("%d", 123);
-	//printf("%d\n", size);
-	/*printf("hi");
-	ft_printf("hi");*/
-	//printf("hello %0*d", 5, 1, "world");
-	//ft_printf("hello %0*d", 5, 1, "world");
+	size2 = ft_printf("hello %0*d", 5, 1);
+	printf("\n%d\n", size2);
+	
+	size = printf("%9.5d", 123);
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("%9.5d", 123);
+	printf("\n%d\n", size2);
 }
+

@@ -1,6 +1,9 @@
 #include <stdio.h>
 
 int main(){
+	printf("test [%19.5d]\n", 123);
+	printf("test [%9.5d]\n", 0);	
+
 	printf("[%.d]\n", 123);
 	printf("[%1.d]\n", 123);
 	printf("[%2.d]\n", 123);
