@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/05 21:48:24 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/06 10:36:01 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,20 @@ char 	*update_padding(int zero, int size)
 	return (padding);
 }
 
-char	*update_rest(char *buf, char *padding)
+char	*update_rest(char *buf, char *padding, int minus)
 {
 	char *rest;
-
-	rest = ft_strjoin(padding, buf);
-	return (rest);
+	
+	if (minus == 0)
+	{
+		rest = ft_strjoin(padding, buf);
+		return (rest);
+	}
+	else
+	{
+		rest = ft_strjoin(buf, padding);
+		return (rest);
+	}
 }
 
 char	*update_prec(char *buf, t_opt *opt)
@@ -66,7 +74,7 @@ char	*update_prec(char *buf, t_opt *opt)
 	if ((opt->prec > -1) && (opt->prec > ft_strlen(buf)))
 	{
 		padding = update_padding(1, opt->prec - ft_strlen(buf));
-		buf = update_rest(buf, padding);
+		buf = update_rest(buf, padding, opt->minus);
 	}
 	return (buf);
 }
@@ -76,7 +84,7 @@ char	*update_width(char *buf, t_opt *opt)
 	char *padding;
 	
 	padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
-	buf = update_rest(buf, padding);
+	buf = update_rest(buf, padding, opt->minus);
 	return (buf);
 	
 }
@@ -206,5 +214,12 @@ int main()
 	fflush(stdout);
 	size2 = ft_printf("%9.5d", 123);
 	printf("\n%d\n", size2);
+
+	size = printf("%-2d", 5);
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("%-2d", 5);
+	printf("\n%d\n", size2);
 }
+
 
