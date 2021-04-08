@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/06 10:36:01 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/08 21:33:20 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,16 @@ char	*update_prec(char *buf, t_opt *opt)
 char	*update_width(char *buf, t_opt *opt)
 {
 	char *padding;
-	
-	padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
-	buf = update_rest(buf, padding, opt->minus);
+
+	if ((opt->width > 0) && (opt->width > ft_strlen(buf)) && (opt->width > opt->prec))
+	{
+		padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
+		buf = update_rest(buf, padding, opt->minus);
+	}
+	else 
+		buf = ft_strdup(buf);
+	free(padding);
 	return (buf);
-	
 }
 
 int print_nbr(int n, t_opt *opt)
@@ -101,6 +106,7 @@ int print_nbr(int n, t_opt *opt)
 	buf = update_prec(buf ,opt);
 	buf = update_width(buf, opt);
 	ret = putstr_fd(buf);
+	free(buf);
 	return (ret);
 }
 
@@ -128,11 +134,12 @@ void	check_width_prec(va_list ap, char format, t_opt *opt)
 		if (opt->prec == -1)
 		{
 			opt->width = va_arg(ap, int);
-			//if (opt->width < 0)
-			//{
-			//	opt->minus = 1;
-			//	opt->width *= -1;
-			//}
+			if (opt->width < 0)
+			{
+				opt->minus = 1;
+				opt->width *= -1;
+				opt->zero = 0;
+			}
 		}
 		else
 			opt->prec = va_arg(ap, int);
@@ -203,6 +210,20 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
+	size = printf("[%0*d]", -3, 5);
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("[%0*d]", -3, 5);
+	printf("\n%d\n", size2);
+
+	size = printf("[%0*d]", -2, 123);
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("[%0*d]", -2, 123);
+	printf("\n%d\n", size2);
+	
+
+	/*
 	size = printf("hello %0*d", 5, 1);
 	printf("\n%d\n", size);
 	fflush(stdout);
@@ -220,6 +241,14 @@ int main()
 	fflush(stdout);
 	size2 = ft_printf("%-2d", 5);
 	printf("\n%d\n", size2);
+
+	size = printf("%-*d", -2, 123);
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("%-*d", -2, 123);
+	printf("\n%d\n", size2);
+	*/
+
 }
 
 
