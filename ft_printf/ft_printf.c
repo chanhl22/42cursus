@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/13 21:20:41 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/13 22:37:23 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,6 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 		opt->prec = 0;
 	else if (ft_isdigit(*format) || *format == '*')
 		check_width_prec(ap, *format, opt);
-	if (opt->prec >= 0)
-		opt->zero = 0;
 }
 
 int	parsing(va_list ap, char *format)
@@ -195,6 +193,8 @@ int	parsing(va_list ap, char *format)
 				format++;
 			}
 			opt->type = *format++;
+			if (opt->prec >= 0)
+				opt->zero = 0;
 			result += print_data(ap, opt);
 		}
 	}
@@ -219,16 +219,16 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
-	size = printf("[%-.0d]", 5);
+	size = printf("[%-10.*d]", -2, 5);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%-.0d]", 5);
+	size2 = ft_printf("[%-10.*d]", -2, 5);
 	printf("\n%d\n", size2);
 
-	size = printf("[%-.0d]", 123);
+	size = printf("[%-5.*d]", -2, 123);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%-.0d]", 123);
+	size2 = ft_printf("[%-5.*d]", -2, 123);
 	printf("\n%d\n", size2);
 	
 	printf("\ndefault\n\n");
