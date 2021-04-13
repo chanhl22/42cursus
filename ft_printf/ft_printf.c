@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/08 21:33:20 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/13 21:20:41 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*update_prec(char *buf, t_opt *opt)
 	if ((opt->prec > -1) && (opt->prec > ft_strlen(buf)))
 	{
 		padding = update_padding(1, opt->prec - ft_strlen(buf));
-		buf = update_rest(buf, padding, opt->minus);
+		buf = update_rest(buf, padding, 0);
 	}
 	return (buf);
 }
@@ -86,6 +86,10 @@ char	*update_width(char *buf, t_opt *opt)
 	if ((opt->width > 0) && (opt->width > ft_strlen(buf)) && (opt->width > opt->prec))
 	{
 		padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
+		/*if (opt->zero > 0)
+			padding = ft_strdup(padding);
+		else
+			buf = ft_strdup(buf);*/
 		buf = update_rest(buf, padding, opt->minus);
 	}
 	else 
@@ -142,7 +146,10 @@ void	check_width_prec(va_list ap, char format, t_opt *opt)
 			}
 		}
 		else
-			opt->prec = va_arg(ap, int);
+		{
+			if((opt->prec = va_arg(ap, int)) < 0)
+				opt->prec = -1;
+		}
 	}
 }
 
@@ -153,12 +160,14 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 	ret = 0;
 	if (*format == '-')
 		opt->minus = 1;
-	else if (*format == '0')
+	else if (*format == '0' && opt->width == 0)
 		opt->zero = 1;
 	else if (*format == '.')
 		opt->prec = 0;
 	else if (ft_isdigit(*format) || *format == '*')
 		check_width_prec(ap, *format, opt);
+	if (opt->prec >= 0)
+		opt->zero = 0;
 }
 
 int	parsing(va_list ap, char *format)
@@ -210,20 +219,20 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
-	size = printf("[%0*d]", -3, 5);
+	size = printf("[%-.0d]", 5);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%0*d]", -3, 5);
+	size2 = ft_printf("[%-.0d]", 5);
 	printf("\n%d\n", size2);
 
-	size = printf("[%0*d]", -2, 123);
+	size = printf("[%-.0d]", 123);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%0*d]", -2, 123);
+	size2 = ft_printf("[%-.0d]", 123);
 	printf("\n%d\n", size2);
 	
-
-	/*
+	printf("\ndefault\n\n");
+	
 	size = printf("hello %0*d", 5, 1);
 	printf("\n%d\n", size);
 	fflush(stdout);
@@ -247,8 +256,4 @@ int main()
 	fflush(stdout);
 	size2 = ft_printf("%-*d", -2, 123);
 	printf("\n%d\n", size2);
-	*/
-
 }
-
-
