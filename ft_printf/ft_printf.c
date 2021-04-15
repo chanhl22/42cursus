@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/13 22:37:23 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/15 22:43:39 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,22 @@ char	*update_prec(char *buf, t_opt *opt)
 	return (buf);
 }
 
-char	*update_width(char *buf, t_opt *opt)
+char	*update_width(char *buf, t_opt *opt, char *sign)
 {
 	char *padding;
 
-	if ((opt->width > 0) && (opt->width > ft_strlen(buf)) && (opt->width > opt->prec))
+	if ((opt->width > 0) && (opt->width > (ft_strlen(sign) + ft_strlen(buf))) && (opt->width > opt->prec))
 	{
-		padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
-		/*if (opt->zero > 0)
-			padding = ft_strdup(padding);
+		padding = update_padding(opt->zero, opt->width - ft_strlen(sign) - ft_strlen(buf));
+		if (opt->zero > 0)
+			padding = ft_strjoin(sign, padding);
 		else
-			buf = ft_strdup(buf);*/
+			buf = ft_strjoin(sign, buf);
 		buf = update_rest(buf, padding, opt->minus);
 	}
 	else 
-		buf = ft_strdup(buf);
-	free(padding);
+		buf = ft_strjoin(sign, buf);
+	//free(padding);
 	return (buf);
 }
 
@@ -102,13 +102,20 @@ int print_nbr(int n, t_opt *opt)
 {
 	char *buf;
 	int ret;
+	char *sign;
 
+	sign = ft_strdup("");
 	if (opt->prec == 0 && n == 0)
 		buf = ft_strdup("");
+	else if (n < 0)
+	{
+		sign = ft_strjoin(sign, ft_strdup("-"));
+		buf = ft_itoa(n * -1);
+	}
 	else
 		buf = ft_itoa(n);
 	buf = update_prec(buf ,opt);
-	buf = update_width(buf, opt);
+	buf = update_width(buf, opt, sign);
 	ret = putstr_fd(buf);
 	free(buf);
 	return (ret);
@@ -219,16 +226,16 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
-	size = printf("[%-10.*d]", -2, 5);
+	size = printf("[%-10.*d]", -2, -5);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%-10.*d]", -2, 5);
+	size2 = ft_printf("[%-10.*d]", -2, -5);
 	printf("\n%d\n", size2);
 
-	size = printf("[%-5.*d]", -2, 123);
+	size = printf("[%-5.*d]", -2, -123);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%-5.*d]", -2, 123);
+	size2 = ft_printf("[%-5.*d]", -2, -123);
 	printf("\n%d\n", size2);
 	
 	printf("\ndefault\n\n");

@@ -1,33 +1,26 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int printNumbers(int args, ...)
+int		length_of_int(int num)
 {
-    va_list ap; 
-	int num = 0;
+		int len;
 
-    va_start(ap, args);  
-    for (int i = 0; i < args; i++) 
-    {
-        num = va_arg(ap, int);                             
-        printf("%d ", num); 
-    }
-    va_end(ap); 
-
-    printf("\n");
-	return (num);
+		len = (num <= 0) ? 1 : 0;
+		while (num != 0)
+		{
+			num = num / 10;
+			len++;
+		}
+		return (len);
 }
 
 int main()
 {
-	int num = 123;
-	printf("%d\n",num);
-	printf("again");
+	int n = -5;
+	int len;
+	len = length_of_int(n);
 
-    printf("%d\n",printNumbers(1, 10)); 
-    printNumbers(2, 10, 20);
-    printNumbers(3, 10, 20, 30);
-    printNumbers(4, 10, 20, 30, 40);
+	printf("%d", len);
 
     return 0;
 }
