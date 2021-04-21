@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/17 22:53:39 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:13:19 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	putchar_fd(char c, int fd)
 		return (write(fd, &c, 1));
 }
 
-int		putstr_fd(char *s)
+int		putstr_fd(char *s, int fd)
 {
 	int i;
 
 	i = 0;
 	while (s[i])
 	{
-		write(1, &s[i], 1);
+		write(fd, &s[i], 1);
 		i++;
 	}
 	return (i);
@@ -91,10 +91,10 @@ char	*update_width(char *buf, t_opt *opt, char *sign)
 		else
 			buf = ft_strjoin(sign, buf);
 		buf = update_rest(buf, padding, opt->minus);
+		free(padding);
 	}
 	else 
 		buf = ft_strjoin(sign, buf);
-	//free(padding);
 	return (buf);
 }
 
@@ -116,7 +116,7 @@ int print_nbr(int n, t_opt *opt)
 		buf = ft_itoa(n);
 	buf = update_prec(buf ,opt);
 	buf = update_width(buf, opt, sign);
-	ret = putstr_fd(buf);
+	ret = putstr_fd(buf, 1);
 	free(buf);
 	return (ret);
 }
@@ -130,8 +130,8 @@ int print_data(va_list ap, t_opt *opt)
 		ret += print_nbr(va_arg(ap, int), opt);
 	else if (opt->type == 'c')
 		ret += print_char(va_arg(ap, int), opt);
-	else if (opt->type == 's')
-		ret += print_string(va_arg(ap, char *), opt);
+	/*else if (opt->type == 's')
+		ret += print_string(va_arg(ap, char *), opt);*/
 	return (ret);
 }
 
@@ -230,6 +230,14 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
+    size = printf("[%2c]", 'a');
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("[%2c]", 'a');
+	printf("\n%d\n", size2);
+
+	printf("\ndefault\n\n");
+	
 	size = printf("[%-10.*d]", -2, -5);
 	printf("\n%d\n", size);
 	fflush(stdout);

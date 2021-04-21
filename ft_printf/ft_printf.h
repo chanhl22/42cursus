@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:00:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/01 17:23:44 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:11:44 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,20 @@ typedef struct	s_opt
 }				t_opt;
 
 int				ft_printf(const char *format, ...);
+int				putchar_fd(char c, int fd);
+int				putstr_fd(char *s, int fd);
+void			init_opt(t_opt *opt);
+char		    *update_padding(int zero, int size);
+char	    	*update_rest(char *buf, char *padding, int minus);
+char	    	*update_prec(char *buf, t_opt *opt);
+char	    	*update_width(char *buf, t_opt *opt, char *sign);
+int				 print_nbr(int n, t_opt *opt);
+int			 	print_data(va_list ap, t_opt *opt);
+void			check_width_prec(va_list ap, char format, t_opt *opt);
+void			check_format(char *format, va_list ap, t_opt *opt);
+int 			parsing(va_list ap, char *format);
+
+int				print_char(int c, t_opt *opt);
+int				putstr_fd(char *s, int fd);
 
 #endif
