@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:00:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/21 22:11:44 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:29:17 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int 			parsing(va_list ap, char *format);
 
 int				print_char(int c, t_opt *opt);
 int				putstr_fd(char *s, int fd);
+
+int				print_string(char *str, t_opt *opt);
 
 #endif

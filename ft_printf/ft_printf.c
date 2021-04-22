@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/21 22:13:19 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:38:39 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ int print_data(va_list ap, t_opt *opt)
 		ret += print_nbr(va_arg(ap, int), opt);
 	else if (opt->type == 'c')
 		ret += print_char(va_arg(ap, int), opt);
-	/*else if (opt->type == 's')
-		ret += print_string(va_arg(ap, char *), opt);*/
+	else if (opt->type == 's')
+		ret += print_string(va_arg(ap, char *), opt);
 	return (ret);
 }
 
@@ -230,10 +230,10 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
-    size = printf("[%2c]", 'a');
+    size = printf("%s", NULL);
 	printf("\n%d\n", size);
 	fflush(stdout);
-	size2 = ft_printf("[%2c]", 'a');
+	size2 = ft_printf("%s", NULL);
 	printf("\n%d\n", size2);
 
 	printf("\ndefault\n\n");
