@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/22 11:38:39 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:51:59 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,10 +230,22 @@ int main()
 	int size = 0;
 	int size2 = 0;
 
-    size = printf("%s", NULL);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("%s", NULL);
+    //size = printf("%.-1s", "abcde");
+	//printf("\n%d\n", size);
+	//fflush(stdout);
+	//size2 = ft_printf("%.-1s", "abcde");
+	//printf("\n%d\n", size2);
+ 
+	//size = printf("%.*s",-1 ,"abcde");
+	//printf("\n%d\n", size);
+	//fflush(stdout);
+	//size2 = ft_printf("%.*s", -1, "abcde");
+	//printf("\n%d\n", size2);
+    
+	//size = printf("%0s", "abcde");
+	//printf("\n%d\n", size);
+	//fflush(stdout);
+	size2 = ft_printf("%0s", "abcde");
 	printf("\n%d\n", size2);
 
 	printf("\ndefault\n\n");
