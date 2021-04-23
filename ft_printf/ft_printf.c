@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/22 12:51:59 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:50:53 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ int print_data(va_list ap, t_opt *opt)
 		ret += print_char(va_arg(ap, int), opt);
 	else if (opt->type == 's')
 		ret += print_string(va_arg(ap, char *), opt);
+	else if (opt->type == 'p')
+		ret += print_pointer(va_arg(ap, long long), opt);
 	return (ret);
 }
 
@@ -229,23 +231,14 @@ int main()
 {
 	int size = 0;
 	int size2 = 0;
-
-    //size = printf("%.-1s", "abcde");
-	//printf("\n%d\n", size);
-	//fflush(stdout);
-	//size2 = ft_printf("%.-1s", "abcde");
-	//printf("\n%d\n", size2);
- 
-	//size = printf("%.*s",-1 ,"abcde");
-	//printf("\n%d\n", size);
-	//fflush(stdout);
-	//size2 = ft_printf("%.*s", -1, "abcde");
-	//printf("\n%d\n", size2);
     
-	//size = printf("%0s", "abcde");
-	//printf("\n%d\n", size);
-	//fflush(stdout);
-	size2 = ft_printf("%0s", "abcde");
+	int n = 10;
+	int *ptr = &n;
+
+	size = printf("%p", "ptr");
+	printf("\n%d\n", size);
+	fflush(stdout);
+	size2 = ft_printf("%p", "ptr");
 	printf("\n%d\n", size2);
 
 	printf("\ndefault\n\n");

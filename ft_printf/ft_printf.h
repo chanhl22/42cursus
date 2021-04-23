@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:00:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/22 11:29:17 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/23 11:54:02 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,9 @@ int				print_char(int c, t_opt *opt);
 int				putstr_fd(char *s, int fd);
 
 int				print_string(char *str, t_opt *opt);
+
+int				print_pointer(long long n, t_opt *opt);
+char			*ft_putnbr_base(long long n, char *base);
+char			*ft_putnbr(long long n, char *base, int base_count, char *result);
 
 #endif
