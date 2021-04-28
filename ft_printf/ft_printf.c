@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/23 11:50:53 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/28 22:32:30 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*update_prec(char *buf, t_opt *opt)
 {
 	char *padding;
 	
-	if ((opt->prec > -1) && (opt->prec > ft_strlen(buf)))
+	if ((opt->prec > -1) && (opt->prec > (int)ft_strlen(buf)))
 	{
 		padding = update_padding(1, opt->prec - ft_strlen(buf));
 		buf = update_rest(buf, padding, 0);
@@ -83,7 +83,7 @@ char	*update_width(char *buf, t_opt *opt, char *sign)
 {
 	char *padding;
 
-	if ((opt->width > 0) && (opt->width > (ft_strlen(sign) + ft_strlen(buf))) && (opt->width > opt->prec))
+	if ((opt->width > 0) && (opt->width > (int)(ft_strlen(sign) + ft_strlen(buf))) && (opt->width > opt->prec))
 	{
 		padding = update_padding(opt->zero, opt->width - ft_strlen(sign) - ft_strlen(buf));
 		if (opt->zero > 0)
@@ -227,7 +227,7 @@ int	ft_printf(const char *restrict format, ...)
 	return (result);
 }
 
-int main() 
+/*int main() 
 {
 	int size = 0;
 	int size2 = 0;
@@ -280,4 +280,4 @@ int main()
 	fflush(stdout);
 	size2 = ft_printf("%-*d", -2, 123);
 	printf("\n%d\n", size2);
-}
+}*/

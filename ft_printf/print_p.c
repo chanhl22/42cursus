@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:18:54 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/23 12:03:26 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/28 22:54:30 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_putnbr(long long n, char *base, int base_count, char *result)
 char	*ft_putnbr_base(long long n, char *base)
 {
 	char *result;
-	int size_base;
+	int size_base = 0;
 
 	while (base[size_base])
 		size_base++;
@@ -50,7 +50,12 @@ int	print_pointer(long long n, t_opt *opt)
 	int ret;
 	char *addr;
 
-	addr = ft_putnbr_base(n, "0123456789abcdef");
+	if (n == 0 && opt->prec == 0)
+		addr = ft_strdup("");
+	else if (n == 0 && opt->prec == -1)
+		addr = ft_strdup("0");
+	else
+		addr = ft_putnbr_base(n, "0123456789abcdef");
 	addr = ft_strjoin("0x", addr);
 	addr = update_prec(addr, opt);
 	addr = update_width(addr, opt, "");
