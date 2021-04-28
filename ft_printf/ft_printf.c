@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/28 22:32:30 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/28 23:20:55 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ int print_data(va_list ap, t_opt *opt)
 		ret += print_string(va_arg(ap, char *), opt);
 	else if (opt->type == 'p')
 		ret += print_pointer(va_arg(ap, long long), opt);
+	else if (opt->type == '%')
+		ret += print_char('%', opt);
 	return (ret);
 }
 
