@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/28 23:20:55 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/28 23:25:41 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int print_data(va_list ap, t_opt *opt)
 	int ret;
 	
 	ret = 0;
-	if (opt->type == 'd')
+	if (opt->type == 'd' || opt->type == 'i')
 		ret += print_nbr(va_arg(ap, int), opt);
 	else if (opt->type == 'c')
 		ret += print_char(va_arg(ap, int), opt);
