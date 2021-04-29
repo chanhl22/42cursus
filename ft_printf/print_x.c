@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_c.c                                          :+:      :+:    :+:   */
+/*   print_x.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 21:14:50 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/29 22:29:46 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/04/29 16:36:47 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/04/29 22:31:40 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_char(int c, t_opt *opt)
+int print_16(unsigned int n, t_opt *opt)
 {
-	int ret;
-	char *padding;
+	int     ret;
+	char	*buf = NULL;
 
-	ret = 0;
-	if (opt->width > 0)
-		padding = update_padding(opt->zero, opt->width - sizeof(char));
-	else
-		padding = ft_strdup("");
-	if (opt->minus == 0)
-	{
-		ret = putstr_fd(padding, 1);
-		ret += putchar_fd((char)c, 1);
-	}
-	else
-	{
-		ret = putchar_fd((char)c, 1);
-		ret += putstr_fd(padding, 1);
-	}
-	free(padding);
+	if (opt->prec == 0 && n == 0)
+		buf = "";
+	else if (opt->type == 'x')
+		buf = ft_putnbr_base(n, "0123456789abcdef");
+	else if (opt->type == 'X')
+		buf = ft_putnbr_base(n, "0123456789ABCDEF");
+	buf = update_prec(buf, opt);
+	buf = update_width(buf, opt,"");
+	ret = putstr_fd(buf, 1);
+	free(buf);
 	return (ret);
 }

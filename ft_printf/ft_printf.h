@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:00:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/23 11:54:02 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/29 17:10:14 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,12 @@ int				print_string(char *str, t_opt *opt);
 int				print_pointer(long long n, t_opt *opt);
 char			*ft_putnbr_base(long long n, char *base);
 char			*ft_putnbr(long long n, char *base, int base_count, char *result);
+
+int				print_unsigned(unsigned int n, t_opt *opt);
+
+int				print_16(unsigned int n, t_opt *opt);
+char			*ft_itoa2(unsigned int n);
+int				ft_len2(long int nbr);
+long int		ft_abs2(long int nbr);
 
 #endif

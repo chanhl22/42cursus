@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 23:02:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/28 22:34:18 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:24:30 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,15 @@ int	print_string(char *str, t_opt *opt)
 	if (opt->prec > -1)
 		arg = ft_substr(str, 0, opt->prec);
 	else
+	{
 		arg = ft_strdup(str);
+		if (arg == 0)
+		{
+			free(str);
+			str = 0;
+			return (-1);
+		}
+	}
 	if (opt->width > (int)ft_strlen(arg))
 	{
 		padding = update_padding(opt->zero, opt->width - ft_strlen(arg));

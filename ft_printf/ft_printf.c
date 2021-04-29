@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/28 23:25:41 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:08:18 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,13 @@ int print_nbr(int n, t_opt *opt)
 	int ret;
 	char *sign;
 
-	sign = ft_strdup("");
+	sign = "";
 	if (opt->prec == 0 && n == 0)
-		buf = ft_strdup("");
+		buf = "";
 	else if (n < 0)
 	{
-		sign = ft_strjoin(sign, ft_strdup("-"));
-		buf = ft_itoa(n * -1);
+		sign = ft_strjoin(sign, "-");
+		buf = ft_itoa((long long)n * -1);
 	}
 	else
 		buf = ft_itoa(n);
@@ -136,6 +136,10 @@ int print_data(va_list ap, t_opt *opt)
 		ret += print_pointer(va_arg(ap, long long), opt);
 	else if (opt->type == '%')
 		ret += print_char('%', opt);
+	else if (opt->type == 'u')
+		ret += print_unsigned(va_arg(ap, unsigned int), opt);
+	else if (opt->type == 'x' || opt->type == 'X')
+		ret += print_16(va_arg(ap, unsigned int), opt);
 	return (ret);
 }
 
@@ -175,7 +179,7 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 	ret = 0;
 	if (*format == '-')
 		opt->minus = 1;
-	else if (*format == '0' && opt->width == 0)
+	else if (*format == '0' && opt->width == 0 && opt->minus == 0)
 		opt->zero = 1;
 	else if (*format == '.')
 		opt->prec = 0;
@@ -234,14 +238,28 @@ int	ft_printf(const char *restrict format, ...)
 	int size = 0;
 	int size2 = 0;
     
-	int n = 10;
-	int *ptr = &n;
+	//int n = 10;
+	//int *ptr = &n;
 
-	size = printf("%p", "ptr");
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("%p", "ptr");
+	//size = printf("%-09s", "hi low\0don't print me lol\0");
+	//printf("\n%d\n", size);
+	//fflush(stdout);
+	size2 = ft_printf("%-07s", "hi low\0don't print me lol\0");
 	printf("\n%d\n", size2);
+    
+	//size = printf("%-03s", "hi low\0don't print me lol\0");
+	//printf("\n%d\n", size);
+	//fflush(stdout);
+	size2 = ft_printf("%-03s", "hi low\0don't print me lol\0");
+	printf("\n%d\n", size2);
+
+	printf("\ndefault\n\n");
+
+	//size = printf("%p", "ptr");
+	//printf("\n%d\n", size);
+	//fflush(stdout);
+	//size2 = ft_printf("%p", "ptr");
+	//printf("\n%d\n", size2);
 
 	printf("\ndefault\n\n");
 	

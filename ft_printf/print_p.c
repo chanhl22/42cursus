@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:18:54 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/28 22:54:30 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:26:57 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	print_pointer(long long n, t_opt *opt)
 	char *addr;
 
 	if (n == 0 && opt->prec == 0)
-		addr = ft_strdup("");
+		addr = "";
 	else if (n == 0 && opt->prec == -1)
-		addr = ft_strdup("0");
+		addr = "0";
 	else
 		addr = ft_putnbr_base(n, "0123456789abcdef");
-	addr = ft_strjoin("0x", addr);
 	addr = update_prec(addr, opt);
+	addr = ft_strjoin(ft_strdup("0x"), addr);
 	addr = update_width(addr, opt, "");
 	ret = putstr_fd(addr, 1);
 	free(addr);

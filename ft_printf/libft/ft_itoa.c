@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itao.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:53:04 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/02/02 19:16:23 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/29 21:57:28 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		length_of_int(int num)
+int		length_of_int(long long num)
 {
 	int len;
 
@@ -25,12 +25,12 @@ int		length_of_int(int num)
 	return (len);
 }
 
-int		ft_abs(int num)
+int		ft_abs(long long num)
 {
 	return ((num < 0) ? -num : num);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long long n)
 {
 	char	*str;
 	int		len;
