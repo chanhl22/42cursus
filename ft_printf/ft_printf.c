@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/29 22:08:18 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/30 15:40:19 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	putchar_fd(char c, int fd)
 {
-		return (write(fd, &c, 1));
+	return (write(fd, &c, 1));
 }
 
 int		putstr_fd(char *s, int fd)
@@ -30,7 +30,7 @@ int		putstr_fd(char *s, int fd)
 	return (i);
 }
 
-void init_opt(t_opt	*opt)
+void	init_opt(t_opt	*opt)
 {
 	opt->minus = 0;
 	opt->zero = 0;
@@ -39,7 +39,7 @@ void init_opt(t_opt	*opt)
 	opt->type = 0;
 }
 
-char 	*update_padding(int zero, int size)
+char	*update_padding(int zero, int size)
 {
 	char *padding;
 
@@ -54,7 +54,7 @@ char 	*update_padding(int zero, int size)
 char	*update_rest(char *buf, char *padding, int minus)
 {
 	char *rest;
-	
+
 	if (minus == 0)
 	{
 		rest = ft_strjoin(padding, buf);
@@ -70,7 +70,7 @@ char	*update_rest(char *buf, char *padding, int minus)
 char	*update_prec(char *buf, t_opt *opt)
 {
 	char *padding;
-	
+
 	if ((opt->prec > -1) && (opt->prec > (int)ft_strlen(buf)))
 	{
 		padding = update_padding(1, opt->prec - ft_strlen(buf));
@@ -85,7 +85,8 @@ char	*update_width(char *buf, t_opt *opt, char *sign)
 
 	if ((opt->width > 0) && (opt->width > (int)(ft_strlen(sign) + ft_strlen(buf))) && (opt->width > opt->prec))
 	{
-		padding = update_padding(opt->zero, opt->width - ft_strlen(sign) - ft_strlen(buf));
+		padding = update_padding(opt->zero,
+					opt->width - ft_strlen(sign) - ft_strlen(buf));
 		if (opt->zero > 0)
 			padding = ft_strjoin(sign, padding);
 		else
@@ -93,16 +94,16 @@ char	*update_width(char *buf, t_opt *opt, char *sign)
 		buf = update_rest(buf, padding, opt->minus);
 		free(padding);
 	}
-	else 
+	else
 		buf = ft_strjoin(sign, buf);
 	return (buf);
 }
 
-int print_nbr(int n, t_opt *opt)
+int	print_nbr(int n, t_opt *opt)
 {
-	char *buf;
-	int ret;
-	char *sign;
+	char	*buf;
+	int		ret;
+	char	*sign;
 
 	sign = "";
 	if (opt->prec == 0 && n == 0)
@@ -114,17 +115,17 @@ int print_nbr(int n, t_opt *opt)
 	}
 	else
 		buf = ft_itoa(n);
-	buf = update_prec(buf ,opt);
+	buf = update_prec(buf, opt);
 	buf = update_width(buf, opt, sign);
 	ret = putstr_fd(buf, 1);
 	free(buf);
 	return (ret);
 }
 
-int print_data(va_list ap, t_opt *opt)
+int	print_data(va_list ap, t_opt *opt)
 {
 	int ret;
-	
+
 	ret = 0;
 	if (opt->type == 'd' || opt->type == 'i')
 		ret += print_nbr(va_arg(ap, int), opt);
@@ -166,7 +167,7 @@ void	check_width_prec(va_list ap, char format, t_opt *opt)
 		}
 		else
 		{
-			if((opt->prec = va_arg(ap, int)) < 0)
+			if ((opt->prec = va_arg(ap, int)) < 0)
 				opt->prec = -1;
 		}
 	}
@@ -179,7 +180,7 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 	ret = 0;
 	if (*format == '-')
 		opt->minus = 1;
-	else if (*format == '0' && opt->width == 0 && opt->minus == 0)
+	else if (*format == '0' && opt->width == 0 && opt->minus == 0 && opt->prec == -1)
 		opt->zero = 1;
 	else if (*format == '.')
 		opt->prec = 0;
@@ -189,8 +190,8 @@ void	check_format(char *format, va_list ap, t_opt *opt)
 
 int	parsing(va_list ap, char *format)
 {
-	int result;
-	t_opt *opt;
+	int		result;
+	t_opt	*opt;
 
 	result = 0;
 	if (!(opt = malloc(sizeof(t_opt))))
@@ -212,7 +213,7 @@ int	parsing(va_list ap, char *format)
 				format++;
 			}
 			opt->type = *format++;
-			if (opt->prec >= 0)
+			if ((opt->prec >= 0 || opt->minus > 0) && opt->type != '%')
 				opt->zero = 0;
 			result += print_data(ap, opt);
 		}
@@ -223,8 +224,8 @@ int	parsing(va_list ap, char *format)
 
 int	ft_printf(const char *restrict format, ...)
 {
-	va_list ap;
-	int result;
+	va_list	ap;
+	int		result;
 
 	result = 0;
 	va_start(ap, format);
@@ -233,71 +234,81 @@ int	ft_printf(const char *restrict format, ...)
 	return (result);
 }
 
-/*int main() 
-{
-	int size = 0;
-	int size2 = 0;
-    
-	//int n = 10;
-	//int *ptr = &n;
+// int main()
+// {
+// 	int size = 0;
+// 	int size2 = 0;
 
-	//size = printf("%-09s", "hi low\0don't print me lol\0");
-	//printf("\n%d\n", size);
-	//fflush(stdout);
-	size2 = ft_printf("%-07s", "hi low\0don't print me lol\0");
-	printf("\n%d\n", size2);
-    
-	//size = printf("%-03s", "hi low\0don't print me lol\0");
-	//printf("\n%d\n", size);
-	//fflush(stdout);
-	size2 = ft_printf("%-03s", "hi low\0don't print me lol\0");
-	printf("\n%d\n", size2);
+// 	ft_printf("-->|%0*.%|<--\n", 4);
+// 	//int n = 10;
+// 	//int *ptr = &n;
 
-	printf("\ndefault\n\n");
+// 	//size = printf("%-09s", "hi low\0don't print me lol\0");
+// 	//printf("\n%d\n", size);
+// 	//fflush(stdout);
+// 	//size2 = ft_printf("%-07s", "hi low\0don't print me lol\0");
+// 	//printf("\n%d\n", size2);
 
-	//size = printf("%p", "ptr");
-	//printf("\n%d\n", size);
-	//fflush(stdout);
-	//size2 = ft_printf("%p", "ptr");
-	//printf("\n%d\n", size2);
+// 	//size = printf("%-03s", "hi low\0don't print me lol\0");
+// 	//printf("\n%d\n", size);
+// 	//fflush(stdout);
+// 	//size2 = ft_printf("%-03s", "hi low\0don't print me lol\0");
+// 	//printf("\n%d\n", size2);
+// 	// for (int i = 0; i < 5; i++)
+// 	// {
+// 		// size = printf("-->|%.10s|<--\n", "abc");
+// 		// printf("\n%d\n", size);
+// 		// fflush(stdout);
+// 		// size2 = ft_printf("-->|%.10s|<--\n", "abc");
+// 		// printf("\n%d\n", size2);
 
-	printf("\ndefault\n\n");
-	
-	size = printf("[%-10.*d]", -2, -5);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("[%-10.*d]", -2, -5);
-	printf("\n%d\n", size2);
+// 		// printf("\ndefault\n\n");
+// 	// }
 
-	size = printf("[%-5.*d]", -2, -123);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("[%-5.*d]", -2, -123);
-	printf("\n%d\n", size2);
-	
-	printf("\ndefault\n\n");
-	
-	size = printf("hello %0*d", 5, 1);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("hello %0*d", 5, 1);
-	printf("\n%d\n", size2);
-	
-	size = printf("%9.5d", 123);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("%9.5d", 123);
-	printf("\n%d\n", size2);
 
-	size = printf("%-2d", 5);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("%-2d", 5);
-	printf("\n%d\n", size2);
+// 	//size = printf("%p", "ptr");
+// 	//printf("\n%d\n", size);
+// 	//fflush(stdout);
+// 	//size2 = ft_printf("%p", "ptr");
+// 	//printf("\n%d\n", size2);
 
-	size = printf("%-*d", -2, 123);
-	printf("\n%d\n", size);
-	fflush(stdout);
-	size2 = ft_printf("%-*d", -2, 123);
-	printf("\n%d\n", size2);
-}*/
+// 	// printf("\ndefault\n\n");
+
+// 	// size = printf("[%-10.*d]", -2, -5);
+// 	// printf("\n%d\n", size);
+// 	// fflush(stdout);
+// 	// size2 = ft_printf("[%-10.*d]", -2, -5);
+// 	// printf("\n%d\n", size2);
+
+// 	// size = printf("[%-5.*d]", -2, -123);
+// 	// printf("\n%d\n", size);
+// 	// fflush(stdout);
+// 	// size2 = ft_printf("[%-5.*d]", -2, -123);
+// 	// printf("\n%d\n", size2);
+
+// 	// printf("\ndefault\n\n");
+
+// 	// size = printf("hello %0*d", 5, 1);
+// 	// printf("\n%d\n", size);
+// 	// fflush(stdout);
+// 	// size2 = ft_printf("hello %0*d", 5, 1);
+// 	// printf("\n%d\n", size2);
+
+// 	// size = printf("%9.5d", 123);
+// 	// printf("\n%d\n", size);
+// 	// fflush(stdout);
+// 	// size2 = ft_printf("%9.5d", 123);
+// 	// printf("\n%d\n", size2);
+
+// 	// size = printf("%-2d", 5);
+// 	// printf("\n%d\n", size);
+// 	// fflush(stdout);
+// 	// size2 = ft_printf("%-2d", 5);
+// 	// printf("\n%d\n", size2);
+
+// 	// size = printf("%-*d", -2, 123);
+// 	// printf("\n%d\n", size);
+// 	// fflush(stdout);
+// 	// size2 = ft_printf("%-*d", -2, 123);
+// 	// printf("\n%d\n", size2);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_s.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 23:02:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/29 22:24:30 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:54:38 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_string(char *str, t_opt *opt)
 	char *padding;
 
 	if (str == NULL)
-		str = "(null)";	
+		str = "(null)";
 	if (opt->prec > -1)
 		arg = ft_substr(str, 0, opt->prec);
 	else
