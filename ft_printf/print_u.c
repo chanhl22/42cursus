@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 16:26:47 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/29 22:32:30 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/30 17:01:02 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,18 @@ char		*ft_itoa2(unsigned int n)
 	return (c);
 }
 
-int	print_unsigned(unsigned int n, t_opt *opt)
+int			print_unsigned(unsigned int n, t_opt *opt)
 {
 	int		ret;
-	char	*buf = NULL;
+	char	*buf;
 
+	*buf = NULL;
 	if (opt->prec == 0 && n == 0)
 		buf = "";
 	else if (opt->type == 'u')
 		buf = ft_itoa2(n);
 	buf = update_prec(buf, opt);
-	buf = update_width(buf, opt,"");
+	buf = update_width(buf, opt, "");
 	ret = putstr_fd(buf, 1);
 	free(buf);
 	return (ret);

@@ -6,16 +6,16 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 21:14:50 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 15:27:19 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/30 16:55:20 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_char(int c, t_opt *opt)
+int		print_char(int c, t_opt *opt)
 {
-	int ret;
-	char *padding;
+	int		ret;
+	char	*padding;
 
 	ret = 0;
 	if (opt->width > 0)

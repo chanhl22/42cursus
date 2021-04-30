@@ -1,35 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_s.c                                          :+:      :+:    :+:   */
+/*   print_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 23:02:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 16:56:02 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/04/30 16:42:02 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/04/30 16:55:37 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_string(char *str, t_opt *opt)
+int		putchar_fd(char c, int fd)
 {
-	int		ret;
-	char	*buf;
-	char	*padding;
+	return (write(fd, &c, 1));
+}
 
-	if (str == NULL)
-		str = "(null)";
-	if (opt->prec > -1)
-		buf = ft_substr(str, 0, opt->prec);
-	else
-		buf = ft_strdup(str);
-	if (opt->width > (int)ft_strlen(buf))
+int		putstr_fd(char *s, int fd)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
 	{
-		padding = update_padding(opt->zero, opt->width - ft_strlen(buf));
-		buf = update_rest(buf, padding, opt->minus);
-		free(padding);
+		write(fd, &s[i], 1);
+		i++;
 	}
+	return (i);
+}
+
+int		print_nbr(int n, t_opt *opt)
+{
+	char	*buf;
+	int		ret;
+	char	*sign;
+
+	sign = "";
+	if (opt->prec == 0 && n == 0)
+		buf = "";
+	else if (n < 0)
+	{
+		sign = ft_strjoin(sign, "-");
+		buf = ft_itoa((long long)n * -1);
+	}
+	else
+		buf = ft_itoa(n);
+	buf = update_prec(buf, opt);
+	buf = update_width(buf, opt, sign);
 	ret = putstr_fd(buf, 1);
 	free(buf);
 	return (ret);

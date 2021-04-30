@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_p.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:18:54 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/29 22:26:57 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/04/30 16:55:10 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,21 @@ char	*ft_putnbr(long long n, char *base, int base_count, char *result)
 
 char	*ft_putnbr_base(long long n, char *base)
 {
-	char *result;
-	int size_base = 0;
+	char	*result;
+	int		size_base;
 
+	size_base = 0;
 	while (base[size_base])
 		size_base++;
-	result = ft_calloc(sizeof(char), 1); 
+	result = ft_calloc(sizeof(char), 1);
 	result = ft_putnbr(n, base, size_base, result);
 	return (result);
-}	
+}
 
-int	print_pointer(long long n, t_opt *opt)
+int		print_pointer(long long n, t_opt *opt)
 {
-	int ret;
-	char *addr;
+	int		ret;
+	char	*addr;
 
 	if (n == 0 && opt->prec == 0)
 		addr = "";
