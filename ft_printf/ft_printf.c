@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 16:51:03 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/01 10:11:50 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		parsing(va_list ap, char *format)
 	return (result);
 }
 
-int		ft_printf(const char *restrict format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		result;
