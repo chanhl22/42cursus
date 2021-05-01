@@ -6,14 +6,14 @@
 #    By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/24 17:00:52 by chanhlee          #+#    #+#              #
-#    Updated: 2021/04/29 16:49:37 by chanhlee         ###   ########.fr        #
+#    Updated: 2021/05/01 08:50:06 by chanhlee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
 LIBFT		= libft
 LIBFT_LIB	= libft.a
-SRCS		= ./ft_printf.c ./print_c.c\
+SRCS		= ./ft_printf.c ./check.c ./print_d.c ./print_c.c\
 			  ./print_p.c ./print_s.c ./print_u.c ./print_x.c
 OBJS		= $(SRCS:.c=.o)
 RM			= rm -f

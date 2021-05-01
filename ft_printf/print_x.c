@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 16:36:47 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 16:54:58 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/01 08:28:11 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		print_16(unsigned int n, t_opt *opt)
 	int		ret;
 	char	*buf;
 
-	*buf = NULL;
+	buf = "";
 	if (opt->prec == 0 && n == 0)
 		buf = "";
 	else if (opt->type == 'x')
