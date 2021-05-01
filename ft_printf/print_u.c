@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 16:26:47 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/05/01 08:27:56 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:12:47 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ int			print_unsigned(unsigned int n, t_opt *opt)
 	int		ret;
 	char	*buf;
 
-	buf = "";
 	if (opt->prec == 0 && n == 0)
-		buf = "";
+		buf = strdup("");
 	else if (opt->type == 'u')
 		buf = ft_itoa2(n);
 	buf = update_prec(buf, opt);

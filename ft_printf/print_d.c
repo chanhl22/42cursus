@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 16:42:02 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 16:55:37 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:24:46 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int		print_nbr(int n, t_opt *opt)
 
 	sign = "";
 	if (opt->prec == 0 && n == 0)
-		buf = "";
+		buf = strdup("");
 	else if (n < 0)
 	{
-		sign = ft_strjoin(sign, "-");
+		sign = "-";
 		buf = ft_itoa((long long)n * -1);
 	}
 	else

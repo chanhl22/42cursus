@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 16:43:32 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 16:51:02 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:02:22 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ char	*update_rest(char *buf, char *padding, int minus)
 char	*update_prec(char *buf, t_opt *opt)
 {
 	char *padding;
+	char *temp;
 
 	if ((opt->prec > -1) && (opt->prec > (int)ft_strlen(buf)))
 	{
 		padding = update_padding(1, opt->prec - ft_strlen(buf));
-		buf = update_rest(buf, padding, 0);
+		temp = update_rest(buf, padding, 0);
+		free(buf);
+		buf = temp;
+		free(padding);
 	}
 	return (buf);
 }
@@ -64,6 +68,7 @@ char	*update_prec(char *buf, t_opt *opt)
 char	*update_width(char *buf, t_opt *opt, char *sign)
 {
 	char	*padding;
+	char	*temp;
 
 	if ((opt->width > 0) &&
 		(opt->width > (int)(ft_strlen(sign) + ft_strlen(buf)))
@@ -72,13 +77,15 @@ char	*update_width(char *buf, t_opt *opt, char *sign)
 		padding = update_padding(opt->zero,
 					opt->width - ft_strlen(sign) - ft_strlen(buf));
 		if (opt->zero > 0)
-			padding = ft_strjoin(sign, padding);
+			padding = ft_strjoin_second(sign, padding);
 		else
-			buf = ft_strjoin(sign, buf);
-		buf = update_rest(buf, padding, opt->minus);
+			buf = ft_strjoin_second(sign, buf);
+		temp = update_rest(buf, padding, opt->minus);
+		free(buf);
+		buf = temp;
 		free(padding);
 	}
 	else
-		buf = ft_strjoin(sign, buf);
+		buf = ft_strjoin_second(sign, buf);
 	return (buf);
 }

@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:00:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/04/30 16:41:15 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:12:06 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,9 @@ int				print_16(unsigned int n, t_opt *opt);
 char			*ft_itoa2(unsigned int n);
 int				ft_len2(long int nbr);
 long int		ft_abs2(long int nbr);
+
+char			*ft_strjoin_first(char *s1, char *s2);
+char			*ft_strjoin_second(char *s1, char *s2);
+char			*ft_strjoin_third(char *s1, char *s2);
 
 #endif
