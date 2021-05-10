@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:27:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/05/01 19:15:04 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:03:26 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,4 @@ int		ft_printf(const char *format, ...)
 	result = parsing(ap, (char *)format);
 	va_end(ap);
 	return (result);
-}
-
-int main(){
-	ft_printf("%.0u", 0);
 }
