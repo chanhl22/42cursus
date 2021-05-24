@@ -1,13 +1,13 @@
 FROM	debian:buster
 
 RUN	apt-get update && apt-get install -y \
-	nginx \
+	nginx\
 	mariadb-server \
 	php-mysql \
 	php-mbstring \
 	openssl \
 	vim \
-	wget \
+	wget \ 
 	php7.3-fpm
 
 COPY	./srcs/run.sh ./
