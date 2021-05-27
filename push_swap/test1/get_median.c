@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:45:22 by hopham            #+#    #+#             */
-/*   Updated: 2021/05/26 11:46:48 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/05/26 21:12:42 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_count(t_stack *stack)
 	int			count;//반환할 count변수
 	t_lstnum	*tmp;//tmp
 
-	tmp = stack->head;//a스택의 head를 
+	tmp = stack->head;//a스택의 head를 tmp에 넣음
 	count = 0;
 	while (tmp != stack->p[stack->top])
 	{
