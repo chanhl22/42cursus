@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 11:27:53 by aschukin          #+#    #+#             */
-/*   Updated: 2018/05/13 16:51:59 by aschukin         ###   ########.fr       */
+/*   Updated: 2021/05/28 07:21:31 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void		free_stack(t_stack *stack)
 {
 	t_stack		*track_next;
 	t_stack		*delete;
-
-	if (stack)
+if (stack)
 	{
 		track_next = stack->next;
 		while (track_next != stack)
