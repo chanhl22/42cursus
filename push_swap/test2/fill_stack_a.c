@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 12:29:58 by aschukin          #+#    #+#             */
-/*   Updated: 2018/05/13 15:43:14 by aschukin         ###   ########.fr       */
+/*   Updated: 2021/05/29 10:51:44 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-static long		atoi_push_swap(t_frame *frame, char *str)
+static long atoi_push_swap(t_frame *frame, char *str)
 {
-	long	num;
-	int		i;
-	int		len;
-	int		sign;
+	long num;
+	int i;
+	int len;
+	int sign;
 
 	num = 0;
 	i = 0;
 	len = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		|| str[i] == '\f')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f')
 		i++;
 	str[i] == '-' ? (sign = -1) : 0;
 	if (str[i] == '-' || str[i] == '+')
@@ -42,10 +41,10 @@ static long		atoi_push_swap(t_frame *frame, char *str)
 	return (num * sign);
 }
 
-static void		check_duplicates(t_frame *frame)
+static void check_duplicates(t_frame *frame)
 {
-	t_stack		*slow;
-	t_stack		*fast;
+	t_stack *slow;
+	t_stack *fast;
 
 	slow = frame->a;
 	while (slow != frame->a->prev)
@@ -61,9 +60,9 @@ static void		check_duplicates(t_frame *frame)
 	}
 }
 
-static void		complete_filling(t_frame *frame, char *str, int i, int j)
+static void complete_filling(t_frame *frame, char *str, int i, int j)
 {
-	long int	test_int_size;
+	long int test_int_size;
 
 	while (str)
 	{
@@ -72,10 +71,10 @@ static void		complete_filling(t_frame *frame, char *str, int i, int j)
 			while (!(j = 0) && *str && *str == ' ')
 				str++;
 			while (*(str + j) && (*(str + j) == '-' || *(str + j) == '+' ||
-						ft_isdigit(*(str + j))))
+								  ft_isdigit(*(str + j))))
 				j++;
 			if (!*str)
-				break ;
+				break;
 			test_int_size = atoi_push_swap(frame, str);
 			if (test_int_size > 2147483647 || test_int_size < -2147483648)
 				push_swap_error(frame);
@@ -88,10 +87,10 @@ static void		complete_filling(t_frame *frame, char *str, int i, int j)
 		push_swap_error(frame);
 }
 
-static void		error_parser(t_frame *frame)
+static void error_parser(t_frame *frame)
 {
-	char	*str;
-	int		i;
+	char *str;
+	int i;
 
 	i = 1;
 	str = frame->argv[i];
@@ -102,10 +101,10 @@ static void		error_parser(t_frame *frame)
 			if (*str == ' ' || ft_isdigit(*str))
 				str++;
 			else if (*str == '-' && ft_isdigit(*(str + 1)) &&
-						(str == frame->argv[i] || *(str - 1) == ' '))
+					 (str == frame->argv[i] || *(str - 1) == ' '))
 				str++;
 			else if (*str == '+' && ft_isdigit(*(str + 1)) &&
-						(str == frame->argv[i] || *(str - 1) == ' '))
+					 (str == frame->argv[i] || *(str - 1) == ' '))
 				str++;
 			else
 				push_swap_error(frame);
@@ -114,21 +113,23 @@ static void		error_parser(t_frame *frame)
 	}
 }
 
-void			fill_stack_a(t_frame *frame)
+//a스택에 채움
+void fill_stack_a(t_frame *frame)
 {
-	char	*str;
-	int		i;
-	int		j;
+	char *str;
+	int i;
+	int j;
 
 	i = 1;
 	j = 0;
+	//일단 넘어감
 	if (ft_strcmp(frame->argv[i], "-v") == 0)
 	{
 		frame->argv++;
 		frame->print_stacks = 1;
 	}
-	str = frame->argv[i];
-	error_parser(frame);
+	str = frame->argv[i]; //첫번째 입력값을 넣음
+	error_parser(frame);  //에러가 있다면 처리
 	complete_filling(frame, str, i, j);
 	check_duplicates(frame);
 }
