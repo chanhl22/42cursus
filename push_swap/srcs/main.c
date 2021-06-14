@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_rr.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/08 12:28:36 by aschukin          #+#    #+#             */
-/*   Updated: 2018/05/08 12:28:39 by aschukin         ###   ########.fr       */
+/*   Created: 2021/05/28 20:58:28 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/14 17:13:37 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_rr(t_frame *frame)
+int main(int argc, char **argv)
 {
-	do_ra(frame);
-	do_rb(frame);
-	if (frame->do_write)
-		write(1, "rr\n", 3);
+	t_stack a;
+	t_stack b;
+
+	if (argc < 2)
+		return (0);
+	build_stack(&a, argc, argv);
+	b.head = NULL;
+	b.end = NULL;
+
+	solution = solve(&a, &b);
+	print_and_free(&a, solution);
+	
+	return (0);
 }
