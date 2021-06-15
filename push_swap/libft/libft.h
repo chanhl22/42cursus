@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:52:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/05/30 18:09:14 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/14 20:01:19 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 void				*ft_memalloc(size_t size);
 int					ft_isblank(int c);
 long long			ft_atoill(const char *str);
+t_list				*ft_lstnew(void const *content, size_t content_size);
+void				sort_des(int *tab, unsigned int size);
 
 #endif

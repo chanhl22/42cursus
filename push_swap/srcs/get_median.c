@@ -1,34 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_median.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 20:58:28 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 19:34:59 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/14 19:38:26 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/14 20:01:47 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	get_count(t_stack *stack)
 {
-	t_stack a;
-	t_stack b;
-	int		count;
-	t_list	*solution;
+	int			count;
+	t_lstnum	*tmp;
 
-	if (argc < 2)
-		return (0);
-	build_stack(&a, argc, argv);
-	b.head = NULL;
-	b.end = NULL;
-	count = count_numbers(&a);
-	a.ac = count;
-	b.ac = count;
-	solution = solve(&a, &b);
-	print_and_free(&a, solution);
+	tmp = stack->head;
+	count = 0;
 	
-	return (0);
+	while (tmp != NULL)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	if (!NULL && count == 3)
+	{
+		return (-1);
+	}
+	return (count);
+}
+
+int	get_true_median(t_stack *a)
+{
+	t_lstnum	*tmp;
+	int			i;
+	int			arr[a->ac];
+
+	tmp = a->head;
+	i = 0;
+	while (tmp != NULL)
+	{
+		arr[i] = tmp->n;
+		i++;
+		tmp = tmp->next;
+	}
+	sort_des(arr, i);
+	return (arr[i / 2]);
 }

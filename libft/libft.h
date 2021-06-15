@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:52:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 18:53:52 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/14 22:35:08 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 									void (*del)(void *));
 t_list				*ft_lstnew2(void const *content, size_t content_size);
+char				*ft_strcat(char *s1, const char *s2);
+void				ft_lstadd_end(t_list **alst, t_list *new);
+t_list				*ft_lstnew_str(char *content);
 
 #endif

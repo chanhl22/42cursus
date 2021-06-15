@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_end.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 20:58:28 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 19:34:59 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/14 22:29:11 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/14 22:33:09 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	ft_lstadd_end(t_list **alst, t_list *new)
 {
-	t_stack a;
-	t_stack b;
-	int		count;
-	t_list	*solution;
+	t_list	*elem;
 
-	if (argc < 2)
-		return (0);
-	build_stack(&a, argc, argv);
-	b.head = NULL;
-	b.end = NULL;
-	count = count_numbers(&a);
-	a.ac = count;
-	b.ac = count;
-	solution = solve(&a, &b);
-	print_and_free(&a, solution);
-	
-	return (0);
+	elem = *alst;
+	while (elem->next)
+		elem = elem->next;
+	elem->next = new;
+	return ;
 }

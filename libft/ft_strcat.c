@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 20:58:28 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 19:34:59 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/14 20:44:37 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/14 20:44:50 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	t_stack a;
-	t_stack b;
-	int		count;
-	t_list	*solution;
+	int	i;
+	int	j;
 
-	if (argc < 2)
-		return (0);
-	build_stack(&a, argc, argv);
-	b.head = NULL;
-	b.end = NULL;
-	count = count_numbers(&a);
-	a.ac = count;
-	b.ac = count;
-	solution = solve(&a, &b);
-	print_and_free(&a, solution);
-	
-	return (0);
+	i = ft_strlen(s1);
+	j = 0;
+	while (s2[j])
+	{
+		s1[i] = s2[j];
+		i++;
+		j++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }
