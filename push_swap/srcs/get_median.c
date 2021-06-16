@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:38:26 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 20:01:47 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/16 09:37:50 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ int	get_count(t_stack *stack)
 
 	tmp = stack->head;
 	count = 0;
-	
-	while (tmp != NULL)
+	while (tmp != stack->p[stack->top])
 	{
 		count++;
 		tmp = tmp->next;
 	}
-	if (!NULL && count == 3)
-	{
+	if (!stack->p[stack->top] && count == 3)
 		return (-1);
-	}
 	return (count);
 }
 
@@ -40,12 +37,12 @@ int	get_true_median(t_stack *a)
 
 	tmp = a->head;
 	i = 0;
-	while (tmp != NULL)
+	while (tmp != a->p[a->top])
 	{
 		arr[i] = tmp->n;
 		i++;
 		tmp = tmp->next;
 	}
-	sort_des(arr, i);
+	sort_int_tab_des(arr, i);
 	return (arr[i / 2]);
 }

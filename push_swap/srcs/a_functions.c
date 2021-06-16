@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:51:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/15 00:06:39 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/16 09:36:45 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_special_median_a(t_stack *a)
+int			get_special_median_a(t_stack *a)
 {
 	t_lstnum	*tmp;
 	int			arr[12];
@@ -20,14 +20,55 @@ int		get_special_median_a(t_stack *a)
 
 	tmp = a->head;
 	i = 0;
-	while (tmp != NULL)
+	while (tmp != a->p[a->top])
 	{
 		arr[i] = tmp->n;
 		i++;
 		tmp = tmp->next;
 	}
-	sort_des(arr, i);
+	sort_int_tab_des(arr, i);
+	if (a->p[a->top])
+		return (arr[2]);
 	return (arr[3]);
+}
+
+static void	three_nb_case(t_stack *a, char *solution)
+{
+	while (!(a->head->next->n < a->head->next->next->n
+			&& a->head->n < a->head->next->next->n))
+	{
+		if (a->head->next->n > a->head->next->next->n
+			&& a->head->next->n > a->head->n)
+		{
+			ft_reverse_rotate(&a->head, &a->end);
+			ft_strcat(solution, "rra\n");
+		}
+		else
+		{
+			ft_rotate(&a->head, &a->end);
+			ft_strcat(solution, "ra\n");
+		}
+	}
+	if (a->head->n < a->head->next->n)
+		return ;
+	swap(&a->head);
+	ft_strcat(solution, "sa\n");
+}
+
+void		sort_a(t_stack *a, int count, char *solution)
+{
+	if (count == 1)
+		return ;
+	if (count == 2)
+	{
+		if (a->head->n > a->head->next->n)
+		{
+			swap(&a->head);
+			ft_strcat(solution, "sa\n");
+		}
+		return ;
+	}
+	three_nb_case(a, solution);
 }
 
 static int	deal_higher_nb_a(t_stack *a, char *solution, int med, int *rewind)
@@ -37,39 +78,41 @@ static int	deal_higher_nb_a(t_stack *a, char *solution, int med, int *rewind)
 
 	tmp = a->head;
 	i = 0;
-	while (tmp != NULL && tmp->n > med)
+	while (tmp != a->p[a->top] && tmp->n > med)
 	{
 		i++;
 		tmp = tmp->next;
 	}
+	if (tmp == a->p[a->top])
+		return (0);
 	*rewind += i;
 	while (i > 0)
 	{
-		rotate(&a->head, &a->end);
+		ft_rotate(&a->head, &a->end);
 		ft_strcat(solution, "ra\n");
 		i--;
 	}
 	return (1);
 }
 
-void split_from_med_a(t_stack *a, t_stack *b, int med, char *solut)
+void		split_from_med_a(t_stack *a, t_stack *b, int med, char *solut)
 {
 	int	rewind;
 
 	rewind = 0;
-	while (a->head != NULL)
+	if (b->head)
+		b->p[++(b->top)] = b->head;
+	while (a->head != a->p[a->top])
 	{
 		if (a->head->n <= med)
 		{
 			push(&a->head, &b->head, &b->end);
 			ft_strcat(solut, "pb\n");
 		}
-		else if
-        {
-            deal_higher_nb_a(a, solut, med, &rewind)
-        }
-    }
-	while (rewind > 0)
+		else if (deal_higher_nb_a(a, solut, med, &rewind) == 0)
+			break ;
+	}
+	while (a->p[a->top] && rewind > 0)
 	{
 		ft_reverse_rotate(&a->head, &a->end);
 		ft_strcat(solut, "rra\n");
