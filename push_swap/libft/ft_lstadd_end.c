@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_des.c                                         :+:      :+:    :+:   */
+/*   ft_lstadd_end.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 19:59:33 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 20:00:02 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/16 10:43:11 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/16 10:43:18 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	sort_des(int *tab, unsigned int size)
-{
-	unsigned int	i;
-	int				tmp;
+#include "libft.h"
 
-	i = 0;
-	size--;
-	while (i < size)
-	{
-		if (tab[i] < tab[i + 1])
-		{
-			tmp = tab[i];
-			tab[i] = tab[i + 1];
-			tab[i + 1] = tmp;
-			i = -1;
-		}
-		i++;
-	}
+void	ft_lstadd_end(t_list **alst, t_list *new)
+{
+	t_list	*elem;
+
+	elem = *alst;
+	while (elem->next)
+		elem = elem->next;
+	elem->next = new;
+	return ;
 }

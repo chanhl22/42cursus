@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 19:44:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 09:38:18 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/16 10:45:35 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_list	*solve(t_stack *a, t_stack *b)
 {
 	t_list	*solution;
 
-	solution = ft_lstnew("\0", 1);
+	solution = ft_lstnew2("\0", 1);
 	while (!sorted(a) || b->head)
 	{
 		if (!sorted(a))

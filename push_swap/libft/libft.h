@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:52:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/14 20:01:19 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/16 10:54:05 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct		s_list
 {
 	void			*content;
+	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
@@ -55,7 +56,7 @@ char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char *s, int fd);
+void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void *content);
@@ -71,7 +72,14 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 void				*ft_memalloc(size_t size);
 int					ft_isblank(int c);
 long long			ft_atoill(const char *str);
-t_list				*ft_lstnew(void const *content, size_t content_size);
-void				sort_des(int *tab, unsigned int size);
+t_list				*ft_lstnew2(void const *content, size_t content_size);
+void				sort_int_tab_des(int *tab, unsigned int size);
+void				ft_putstr(const char *str);
+void				ft_memdel(void **ap);
+void				sort_int_tab_des(int *tab, unsigned int size);
+void				sort_int_tab(int *tab, unsigned int size);
+char				*ft_strcat(char *s1, const char *s2);
+void				ft_lstadd_end(t_list **alst, t_list *new);
+t_list				*ft_lstnew_str(char *content);
 
 #endif

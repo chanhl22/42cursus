@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   sort_int_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 11:54:03 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 10:27:08 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/16 10:35:23 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/16 10:54:08 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putstr_fd(char const *s, int fd)
+void	sort_int_tab(int *tab, unsigned int size)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	unsigned int	i;
+	int				tmp;
+
+	i = 0;
+	size--;
+	while (i < size)
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
+			i = -1;
+		}
+		i++;
+	}
 }

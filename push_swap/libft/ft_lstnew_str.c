@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew2.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 19:28:19 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 10:04:08 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/16 10:43:47 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/16 10:43:57 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew2(void const *content, size_t content_size)
+t_list		*ft_lstnew_str(char *content)
 {
-	t_list	*list;
+	t_list	*tmp;
+	int		i;
+	char	*arr;
 
-	list = (t_list*)malloc(sizeof(*list));
-	if (!list)
+	if (!(tmp = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
-	if (!content)
+	if (content == NULL)
 	{
-		list->content = NULL;
-		list->content_size = 0;
+		tmp->content = NULL;
+		tmp->content_size = 0;
+		tmp->next = NULL;
+		return (tmp);
 	}
-	else
+	arr = malloc(sizeof(char) * ft_strlen(content) + 1);
+	i = 0;
+	while (content[i])
 	{
-		list->content = malloc(content_size);
-		if (!list->content)
-		{
-			free(list);
-			return (NULL);
-		}
-		ft_memcpy(list->content, content, content_size);
-		list->content_size = content_size;
+		arr[i] = content[i];
+		i++;
 	}
-	list->next = NULL;
-	return (list);
+	arr[i] = '\0';
+	tmp->content = (void *)arr;
+	tmp->next = NULL;
+	return (tmp);
 }
