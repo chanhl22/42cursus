@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:51:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 09:36:45 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 22:57:19 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			get_special_median_a(t_stack *a)
+int			get_median_a(t_stack *a)
 {
 	t_lstnum	*tmp;
 	int			arr[12];
@@ -26,7 +26,7 @@ int			get_special_median_a(t_stack *a)
 		i++;
 		tmp = tmp->next;
 	}
-	sort_int_tab_des(arr, i);
+	sort_descending(arr, i);
 	if (a->p[a->top])
 		return (arr[2]);
 	return (arr[3]);
@@ -40,12 +40,12 @@ static void	three_nb_case(t_stack *a, char *solution)
 		if (a->head->next->n > a->head->next->next->n
 			&& a->head->next->n > a->head->n)
 		{
-			ft_reverse_rotate(&a->head, &a->end);
+			reverse_rotate(&a->head, &a->end);
 			ft_strcat(solution, "rra\n");
 		}
 		else
 		{
-			ft_rotate(&a->head, &a->end);
+			rotate(&a->head, &a->end);
 			ft_strcat(solution, "ra\n");
 		}
 	}
@@ -71,7 +71,7 @@ void		sort_a(t_stack *a, int count, char *solution)
 	three_nb_case(a, solution);
 }
 
-static int	deal_higher_nb_a(t_stack *a, char *solution, int med, int *rewind)
+static int	check_a_ra(t_stack *a, char *solution, int med, int *rewind)
 {
 	t_lstnum	*tmp;
 	int			i;
@@ -88,14 +88,14 @@ static int	deal_higher_nb_a(t_stack *a, char *solution, int med, int *rewind)
 	*rewind += i;
 	while (i > 0)
 	{
-		ft_rotate(&a->head, &a->end);
+		rotate(&a->head, &a->end);
 		ft_strcat(solution, "ra\n");
 		i--;
 	}
 	return (1);
 }
 
-void		split_from_med_a(t_stack *a, t_stack *b, int med, char *solut)
+void		cal_stack_a(t_stack *a, t_stack *b, int med, char *solut)
 {
 	int	rewind;
 
@@ -109,12 +109,12 @@ void		split_from_med_a(t_stack *a, t_stack *b, int med, char *solut)
 			push(&a->head, &b->head, &b->end);
 			ft_strcat(solut, "pb\n");
 		}
-		else if (deal_higher_nb_a(a, solut, med, &rewind) == 0)
+		else if (check_a_ra(a, solut, med, &rewind) == 0)
 			break ;
 	}
 	while (a->p[a->top] && rewind > 0)
 	{
-		ft_reverse_rotate(&a->head, &a->end);
+		reverse_rotate(&a->head, &a->end);
 		ft_strcat(solut, "rra\n");
 		rewind--;
 	}

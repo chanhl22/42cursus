@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_int_tab.c                                     :+:      :+:    :+:   */
+/*   sort_descending.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 10:35:23 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 10:54:08 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/14 19:59:33 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/18 22:47:34 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	sort_int_tab(int *tab, unsigned int size)
+void	sort_descending(int *tab, unsigned int size)
 {
 	unsigned int	i;
 	int				tmp;
@@ -19,7 +19,7 @@ void	sort_int_tab(int *tab, unsigned int size)
 	size--;
 	while (i < size)
 	{
-		if (tab[i] > tab[i + 1])
+		if (tab[i] < tab[i + 1])
 		{
 			tmp = tab[i];
 			tab[i] = tab[i + 1];

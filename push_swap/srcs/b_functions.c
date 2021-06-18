@@ -6,13 +6,13 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 09:37:05 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 09:37:22 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 22:57:38 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			get_special_median_b(t_stack *b)
+int			get_median_b(t_stack *b)
 {
 	t_lstnum	*tmp;
 	int			i;
@@ -26,13 +26,13 @@ int			get_special_median_b(t_stack *b)
 		i++;
 		tmp = tmp->next;
 	}
-	sort_int_tab(arr, i);
+	sort_ascending(arr, i);
 	if (b->p[b->top])
 		return (arr[1]);
 	return (arr[2]);
 }
 
-static int	deal_lower_nb_b(t_stack *b, char *solution, int med, int *rewind)
+static int	check_b_ra(t_stack *b, char *solution, int med, int *rewind)
 {
 	t_lstnum	*tmp;
 	int			i;
@@ -49,14 +49,14 @@ static int	deal_lower_nb_b(t_stack *b, char *solution, int med, int *rewind)
 	*rewind += i;
 	while (i > 0)
 	{
-		ft_rotate(&b->head, &b->end);
+		rotate(&b->head, &b->end);
 		ft_strcat(solution, "rb\n");
 		i--;
 	}
 	return (1);
 }
 
-void		split_from_med_b(t_stack *a, t_stack *b, int med, char *solut)
+void		cal_stack_b(t_stack *a, t_stack *b, int med, char *solut)
 {
 	int	rewind;
 
@@ -68,12 +68,12 @@ void		split_from_med_b(t_stack *a, t_stack *b, int med, char *solut)
 			push(&b->head, &a->head, &a->end);
 			ft_strcat(solut, "pa\n");
 		}
-		else if (deal_lower_nb_b(b, solut, med, &rewind) == 0)
+		else if (check_b_ra(b, solut, med, &rewind) == 0)
 			break ;
 	}
 	while (b->p[b->top] && rewind > 0)
 	{
-		ft_reverse_rotate(&b->head, &b->end);
+		reverse_rotate(&b->head, &b->end);
 		ft_strcat(solut, "rrb\n");
 		rewind--;
 	}
@@ -87,12 +87,12 @@ static void	three_case_nb_b(t_stack *b, char *tmp)
 		if (b->head->next->n < b->head->next->next->n
 			&& b->head->next->n < b->head->n)
 		{
-			ft_reverse_rotate(&b->head, &b->end);
+			reverse_rotate(&b->head, &b->end);
 			ft_strcat(tmp, "rrb\n");
 		}
 		else
 		{
-			ft_rotate(&b->head, &b->end);
+			rotate(&b->head, &b->end);
 			ft_strcat(tmp, "rb\n");
 		}
 	}

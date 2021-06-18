@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:52:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 10:54:05 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 22:47:50 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,10 @@ void				*ft_memalloc(size_t size);
 int					ft_isblank(int c);
 long long			ft_atoill(const char *str);
 t_list				*ft_lstnew2(void const *content, size_t content_size);
-void				sort_int_tab_des(int *tab, unsigned int size);
+void				sort_descending(int *tab, unsigned int size);
 void				ft_putstr(const char *str);
 void				ft_memdel(void **ap);
-void				sort_int_tab_des(int *tab, unsigned int size);
-void				sort_int_tab(int *tab, unsigned int size);
+void				sort_ascending(int *tab, unsigned int size);
 char				*ft_strcat(char *s1, const char *s2);
 void				ft_lstadd_end(t_list **alst, t_list *new);
 t_list				*ft_lstnew_str(char *content);

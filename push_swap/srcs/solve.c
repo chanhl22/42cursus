@@ -6,32 +6,32 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 19:44:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 10:45:35 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 22:41:00 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		split_a_to_b(t_stack *a, t_stack *b, t_list **solution)
+int		check_stack_a(t_stack *a, t_stack *b, t_list **solution)
 {
-	char	tmp[a->ac * 4];
+	char	tmp[a->number_of_op * 4];
 	int		count;
 	long	median;
 
 	tmp[0] = '\0';
 	count = get_count(a);
-	median = NO_MED;
+	median = MEDIAN;
 	if (count > 11)
-		median = get_true_median(a);
+		median = get_median(a);
 	else if (count > 2 && count <= 11)
-		median = get_special_median_a(a);
-	if (median != NO_MED)
-		split_from_med_a(a, b, (int)median, tmp);
+		median = get_median_a(a);
+	if (median != MEDIAN)
+		cal_stack_a(a, b, (int)median, tmp);
 	else
 		sort_a(a, count, tmp);
 	if (tmp[0])
 		ft_lstadd_end(solution, ft_lstnew_str(tmp));
-	if (median == NO_MED)
+	if (median == MEDIAN)
 	{
 		a->p[++(a->top)] = a->head;
 		return (1);
@@ -68,24 +68,24 @@ void	push_b(t_stack *b, t_stack *a, int count, char *tmp)
 	}
 }
 
-void	b_to_a(t_stack *a, t_stack *b, t_list **solution)
+void	check_stack_b(t_stack *a, t_stack *b, t_list **solution)
 {
-	char	tmp[a->ac * 4];
+	char	tmp[a->number_of_op * 4];
 	int		count;
 	long	median;
 
 	tmp[0] = '\0';
 	count = get_count(b);
-	median = NO_MED;
+	median = MEDIAN;
 	if (count > 6)
-		median = get_true_median(b);
+		median = get_median(b);
 	else if (count > 2 && count <= 6)
-		median = get_special_median_b(b);
-	if (median != NO_MED)
-		split_from_med_b(a, b, (int)median, tmp);
+		median = get_median_b(b);
+	if (median != MEDIAN)
+		cal_stack_b(a, b, (int)median, tmp);
 	else
 		sort_b(b, count, tmp);
-	if (median == NO_MED)
+	if (median == MEDIAN)
 		push_b(b, a, count, tmp);
 	if (tmp[0])
 		ft_lstadd_end(solution, ft_lstnew_str(tmp));
@@ -100,12 +100,12 @@ t_list	*solve(t_stack *a, t_stack *b)
 	{
 		if (!sorted(a))
 		{
-			while (split_a_to_b(a, b, &solution) == 0)
+			while (check_stack_a(a, b, &solution) == 0)
 				;
 		}
 		else
 			a->p[++(a->top)] = a->head;
-		b_to_a(a, b, &solution);
+		check_stack_b(a, b, &solution);
 	}
 	return (solution);
 }

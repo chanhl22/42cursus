@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 20:42:27 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 09:38:55 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 22:57:02 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	push(t_lstnum **from, t_lstnum **to, t_lstnum **to_end)
 	(*to)->prev = NULL;
 }
 
-void	ft_rotate(t_lstnum **head, t_lstnum **end)
+void	rotate(t_lstnum **head, t_lstnum **end)
 {
 	if (*head == NULL || *end == NULL)
 		return ;
@@ -57,7 +57,7 @@ void	ft_rotate(t_lstnum **head, t_lstnum **end)
 	(*end)->next = NULL;
 }
 
-void	ft_reverse_rotate(t_lstnum **head, t_lstnum **end)
+void	reverse_rotate(t_lstnum **head, t_lstnum **end)
 {
 	if (*head == NULL || *end == NULL)
 		return ;
