@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:38:26 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 22:48:17 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 23:49:29 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ int	get_count(t_stack *stack)
 	return (count);
 }
 
-int	get_median(t_stack *a)
+int	get_median(t_stack *stack)
 {
 	t_lstnum	*tmp;
 	int			i;
-	int			arr[a->number_of_op];
+	int			arr[stack->number_of_op];
 
-	tmp = a->head;
+	tmp = stack->head;
 	i = 0;
-	while (tmp != a->p[a->top])
+	while (tmp != stack->p[stack->top])
 	{
 		arr[i] = tmp->n;
 		i++;

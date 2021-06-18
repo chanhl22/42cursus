@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_functions.c                                      :+:      :+:    :+:   */
+/*   a_stack_cal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 19:51:57 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 22:57:19 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/18 23:20:19 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/18 23:36:02 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			get_median_a(t_stack *a)
-{
-	t_lstnum	*tmp;
-	int			arr[12];
-	int			i;
-
-	tmp = a->head;
-	i = 0;
-	while (tmp != a->p[a->top])
-	{
-		arr[i] = tmp->n;
-		i++;
-		tmp = tmp->next;
-	}
-	sort_descending(arr, i);
-	if (a->p[a->top])
-		return (arr[2]);
-	return (arr[3]);
-}
-
-static void	three_nb_case(t_stack *a, char *solution)
+void	case_three_a(t_stack *a, char *solution)
 {
 	while (!(a->head->next->n < a->head->next->next->n
 			&& a->head->n < a->head->next->next->n))
@@ -68,10 +48,10 @@ void		sort_a(t_stack *a, int count, char *solution)
 		}
 		return ;
 	}
-	three_nb_case(a, solution);
+	case_three_a(a, solution);
 }
 
-static int	check_a_ra(t_stack *a, char *solution, int med, int *rewind)
+int	check_a_ra(t_stack *a, char *solution, int med, int *rewind)
 {
 	t_lstnum	*tmp;
 	int			i;

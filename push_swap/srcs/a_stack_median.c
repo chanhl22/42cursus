@@ -1,46 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve.c                                            :+:      :+:    :+:   */
+/*   a_stack_median.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/03 19:44:36 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 23:51:44 by chanhlee         ###   ########.fr       */
+/*   Created: 2021/06/14 19:51:57 by chanhlee          #+#    #+#             */
+/*   Updated: 2021/06/18 23:24:45 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		sorted(t_stack *a)
+int			get_median_a(t_stack *a)
 {
 	t_lstnum	*tmp;
+	int			arr[12];
+	int			i;
 
 	tmp = a->head;
-	while (tmp && tmp->next)
+	i = 0;
+	while (tmp != a->p[a->top])
 	{
-		if (tmp->n > tmp->next->n)
-			return (0);
+		arr[i] = tmp->n;
+		i++;
 		tmp = tmp->next;
 	}
-	return (1);
-}
-
-t_list	*solve(t_stack *a, t_stack *b)
-{
-	t_list	*solution;
-
-	solution = ft_lstnew2("\0", 1);
-	while (!sorted(a) || b->head)
-	{
-		if (!sorted(a))
-		{
-			while (check_stack_a(a, b, &solution) == 0)
-				;
-		}
-		else
-			a->p[++(a->top)] = a->head;
-		check_stack_b(a, b, &solution);
-	}
-	return (solution);
+	sort_descending(arr, i);
+	if (a->p[a->top])
+		return (arr[2]);
+	return (arr[3]);
 }

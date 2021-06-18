@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 20:55:25 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 22:59:07 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/18 23:52:16 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,21 @@ void			reverse_rotate(t_lstnum **head, t_lstnum **end);
 t_list			*solve(t_stack *a, t_stack *b);
 int				get_count(t_stack *stack);
 int				get_median(t_stack *a);
-void			cal_stack_a(t_stack *a, t_stack *b, int med, char *solut);
+
 int				get_median_a(t_stack *a);
+int				check_stack_a(t_stack *a, t_stack *b, t_list **solution);
+void			case_three_a(t_stack *a, char *solution);
 void			sort_a(t_stack *a, int count, char *solution);
+int				check_a_ra(t_stack *a, char *solution, int med, int *rewind);
+void			cal_stack_a(t_stack *a, t_stack *b, int med, char *solut);
+
+
 int				get_median_b(t_stack *b);
-void			cal_stack_b(t_stack *a, t_stack *b, int med, char *solut);
+void			check_stack_b(t_stack *a, t_stack *b, t_list **solution);
+void			case_three_b(t_stack *b, char *tmp);
 void			sort_b(t_stack *b, int count, char *tmp);
+void			push_b(t_stack *b, t_stack *a, int count, char *tmp);
+int				check_b_ra(t_stack *b, char *solution, int med, int *rewind);
+void			cal_stack_b(t_stack *a, t_stack *b, int med, char *solut);
 
 #endif
