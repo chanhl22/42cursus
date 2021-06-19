@@ -6,7 +6,7 @@
 #    By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/28 19:53:32 by chanhlee          #+#    #+#              #
-#    Updated: 2021/06/18 23:43:52 by chanhlee         ###   ########.fr        #
+#    Updated: 2021/06/19 15:59:45 by chanhlee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,11 @@ NAME = push_swap
 LIB = libft
 PUSH_SWAP_DIR = srcs
 
-SRCS  =   ./$(PUSH_SWAP_DIR)/build.c ./$(PUSH_SWAP_DIR)/main.c ./$(PUSH_SWAP_DIR)/parse_nb_from_str.c\
+SRCS  =   ./$(PUSH_SWAP_DIR)/build.c ./$(PUSH_SWAP_DIR)/main.c ./$(PUSH_SWAP_DIR)/exception_and_err.c\
 			./$(PUSH_SWAP_DIR)/a_stack_median.c ./$(PUSH_SWAP_DIR)/b_stack_median.c ./$(PUSH_SWAP_DIR)/solve.c\
 			./$(PUSH_SWAP_DIR)/operations.c ./$(PUSH_SWAP_DIR)/get_median.c ./$(PUSH_SWAP_DIR)/a_stack_sort.c\
-			./$(PUSH_SWAP_DIR)/a_stack_cal.c ./$(PUSH_SWAP_DIR)/b_stack_cal.c ./$(PUSH_SWAP_DIR)/b_stack_sort.c
+			./$(PUSH_SWAP_DIR)/a_stack_cal.c ./$(PUSH_SWAP_DIR)/b_stack_cal.c ./$(PUSH_SWAP_DIR)/b_stack_sort.c\
+			./$(PUSH_SWAP_DIR)/free.c
 
 INC_DIR = ./
 OBJ = $(SRCS:.c=.o)

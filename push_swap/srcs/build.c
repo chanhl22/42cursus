@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:38:09 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 09:43:44 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/19 16:02:15 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			ft_error(void)
 	exit(-1);
 }
 
-static int		check_double(t_stack *a)
+int		check_double(t_stack *a)
 {
 	t_lstnum	*tmp1;
 	t_lstnum	*tmp2;
@@ -40,23 +40,16 @@ static int		check_double(t_stack *a)
 	return (1);
 }
 
-void			build_stack(t_stack *a, int ac, char **av, int flag)
+void			build_stack(t_stack *a, int ac, char **av)
 {
 	int	i;
 
 	i = 2;
 	a->head = ft_memalloc(sizeof(t_lstnum));
-	if (flag)
-	{
-		parse_nb_from_first_str(a, av[0]);
-		ac--;
-		i = 1;
-	}
-	else
-		parse_nb_from_first_str(a, av[1]);
+	first_str(a, av[1]);
 	while (i < ac)
 	{
-		parse_nb_from_second_str(a, av[i]);
+		second_str(a, av[i]);
 		i++;
 	}
 	if (!(check_double(a)))

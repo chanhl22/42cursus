@@ -6,7 +6,7 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 20:55:25 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 23:52:16 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/19 16:02:10 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,16 @@ typedef struct	s_stack
 	int			top;
 }				t_stack;
 
-void			parse_nb_from_first_str(t_stack *a, char *str);
-void			parse_nb_from_second_str(t_stack *a, char *str);
+void			first_str(t_stack *a, char *str);
+void			second_str(t_stack *a, char *str);
+t_lstnum		*add_num_to_struct(long long num);
+void			lst_add_end(t_lstnum **back, t_lstnum *new_num);
+void			add_to_list(t_stack *s, t_lstnum *new_num, char *str, int *i);
 
 void			ft_error(void);
-void			build_stack(t_stack *a, int ac, char **av, int flag);
+void			build_stack(t_stack *a, int ac, char **av);
+int				check_double(t_stack *a);
+
 void			swap(t_lstnum **stack);
 void			push(t_lstnum **from, t_lstnum **to, t_lstnum **to_end);
 void			rotate(t_lstnum **head, t_lstnum **end);
@@ -63,5 +68,7 @@ void			sort_b(t_stack *b, int count, char *tmp);
 void			push_b(t_stack *b, t_stack *a, int count, char *tmp);
 int				check_b_ra(t_stack *b, char *solution, int med, int *rewind);
 void			cal_stack_b(t_stack *a, t_stack *b, int med, char *solut);
+
+void			print_and_free(t_stack *a, t_list *solution);
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_nb_from_str.c                                :+:      :+:    :+:   */
+/*   exception_and_err.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:40:42 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/16 10:29:25 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/19 16:41:55 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_lstnum	*add_num_to_struct(long long num)
+t_lstnum	*add_num_to_struct(long long num)
 {
 	t_lstnum	*new_num;
 
@@ -24,22 +24,22 @@ static t_lstnum	*add_num_to_struct(long long num)
 	return (new_num);
 }
 
-static void		lst_addend(t_lstnum **backtrack, t_lstnum *new_num)
+void		lst_add_end(t_lstnum **back, t_lstnum *new_num)
 {
 	t_lstnum	*tmp;
 
-	if (*backtrack == NULL)
+	if (*back == NULL)
 		return ;
-	tmp = *backtrack;
+	tmp = *back;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new_num;
 	tmp = tmp->next;
-	tmp->prev = *backtrack;
-	*backtrack = tmp;
+	tmp->prev = *back;
+	*back = tmp;
 }
 
-static void		add_nb_to_list(t_stack *s, t_lstnum *new_num, char *str, int *i)
+void		add_to_list(t_stack *s, t_lstnum *new_num, char *str, int *i)
 {
 	while (str[*i])
 	{
@@ -57,7 +57,7 @@ static void		add_nb_to_list(t_stack *s, t_lstnum *new_num, char *str, int *i)
 			&& !ft_isdigit(str[*i + 1]) && str[*i + 1] != '\0')
 			ft_error();
 		new_num = add_num_to_struct(ft_atoill(&str[*i]));
-		lst_addend(&s->end, new_num);
+		lst_add_end(&s->end, new_num);
 		if (str[*i] == '-' || str[*i] == '+')
 			(*i)++;
 		while (ft_isdigit(str[*i]))
@@ -67,7 +67,7 @@ static void		add_nb_to_list(t_stack *s, t_lstnum *new_num, char *str, int *i)
 	}
 }
 
-void			parse_nb_from_first_str(t_stack *a, char *str)
+void			first_str(t_stack *a, char *str)
 {
 	int			i;
 	t_lstnum	*new_num;
@@ -90,10 +90,10 @@ void			parse_nb_from_first_str(t_stack *a, char *str)
 		i++;
 	if (str[i] && !ft_isblank(str[i]))
 		ft_error();
-	add_nb_to_list(a, new_num, str, &i);
+	add_to_list(a, new_num, str, &i);
 }
 
-void			parse_nb_from_second_str(t_stack *a, char *str)
+void			second_str(t_stack *a, char *str)
 {
 	int			i;
 	t_lstnum	*new_num;
@@ -102,5 +102,5 @@ void			parse_nb_from_second_str(t_stack *a, char *str)
 	i = 0;
 	if (!str)
 		return ;
-	add_nb_to_list(a, new_num, str, &i);
+	add_to_list(a, new_num, str, &i);
 }

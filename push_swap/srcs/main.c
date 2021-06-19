@@ -6,37 +6,11 @@
 /*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 20:58:28 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 23:03:25 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/19 15:59:14 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	print_and_free(t_stack *a, t_list *solution)
-{
-	t_lstnum	*tmp;
-	t_list		*tmp_solution;
-	t_list		*tmp2;
-
-	tmp_solution = solution;
-	while (solution)
-	{
-		ft_putstr((char*)solution->content);
-		solution = solution->next;
-	}
-	while (a->head)
-	{
-		tmp = a->head;
-		a->head = a->head->next;
-		free(tmp);
-	}
-	while (tmp_solution)
-	{
-		tmp2 = tmp_solution;
-		tmp_solution = tmp_solution->next;
-		ft_memdel((void**)tmp_solution);
-	}
-}
 
 static int	count_stack(t_stack *a)
 {
@@ -62,13 +36,13 @@ int			main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	build_stack(&a, argc, argv, 0);
+	build_stack(&a, argc, argv);
 	b.head = NULL;
 	b.end = NULL;
 	count = count_stack(&a);
 	if (!(a.p = malloc(sizeof(t_lstnum*) * count)) ||
 	!(b.p = malloc(sizeof(t_lstnum*) * count)))
-		return (-1);
+		exit(1);
 	a.number_of_op = count;
 	b.number_of_op = count;
 	a.top = 0;
