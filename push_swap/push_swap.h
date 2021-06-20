@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 20:55:25 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/19 16:02:10 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/20 15:24:48 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void			case_three_a(t_stack *a, char *solution);
 void			sort_a(t_stack *a, int count, char *solution);
 int				check_a_ra(t_stack *a, char *solution, int med, int *rewind);
 void			cal_stack_a(t_stack *a, t_stack *b, int med, char *solut);
-
 
 int				get_median_b(t_stack *b);
 void			check_stack_b(t_stack *a, t_stack *b, t_list **solution);

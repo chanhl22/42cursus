@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   build.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:38:09 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/19 16:02:15 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/20 15:25:23 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			ft_error(void)
+void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(-1);
@@ -40,7 +40,7 @@ int		check_double(t_stack *a)
 	return (1);
 }
 
-void			build_stack(t_stack *a, int ac, char **av)
+void	build_stack(t_stack *a, int ac, char **av)
 {
 	int	i;
 

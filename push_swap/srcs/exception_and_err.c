@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exception_and_err.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:40:42 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/19 16:41:55 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/20 15:27:10 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		add_to_list(t_stack *s, t_lstnum *new_num, char *str, int *i)
 	}
 }
 
-void			first_str(t_stack *a, char *str)
+void		first_str(t_stack *a, char *str)
 {
 	int			i;
 	t_lstnum	*new_num;
@@ -93,7 +93,7 @@ void			first_str(t_stack *a, char *str)
 	add_to_list(a, new_num, str, &i);
 }
 
-void			second_str(t_stack *a, char *str)
+void		second_str(t_stack *a, char *str)
 {
 	int			i;
 	t_lstnum	*new_num;

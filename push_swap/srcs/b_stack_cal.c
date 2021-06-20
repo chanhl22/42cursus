@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_stack_cal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 23:42:43 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 23:52:39 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/20 15:28:08 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	case_three_b(t_stack *b, char *tmp)
 	ft_strcat(tmp, "sb\n");
 }
 
-void		sort_b(t_stack *b, int count, char *tmp)
+void	sort_b(t_stack *b, int count, char *tmp)
 {
 	if (b->top)
 		b->top--;
@@ -68,7 +68,7 @@ void	push_b(t_stack *b, t_stack *a, int count, char *tmp)
 	}
 }
 
-int	check_b_ra(t_stack *b, char *solution, int med, int *rewind)
+int		check_b_ra(t_stack *b, char *solution, int med, int *rewind)
 {
 	t_lstnum	*tmp;
 	int			i;
@@ -92,7 +92,7 @@ int	check_b_ra(t_stack *b, char *solution, int med, int *rewind)
 	return (1);
 }
 
-void		cal_stack_b(t_stack *a, t_stack *b, int med, char *solut)
+void	cal_stack_b(t_stack *a, t_stack *b, int med, char *solut)
 {
 	int	rewind;
 

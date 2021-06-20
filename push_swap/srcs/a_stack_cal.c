@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   a_stack_cal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhlee <chanhlee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhlee <chanhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 23:20:19 by chanhlee          #+#    #+#             */
-/*   Updated: 2021/06/18 23:36:02 by chanhlee         ###   ########.fr       */
+/*   Updated: 2021/06/20 15:26:49 by chanhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	case_three_a(t_stack *a, char *solution)
 	ft_strcat(solution, "sa\n");
 }
 
-void		sort_a(t_stack *a, int count, char *solution)
+void	sort_a(t_stack *a, int count, char *solution)
 {
 	if (count == 1)
 		return ;
@@ -51,7 +51,7 @@ void		sort_a(t_stack *a, int count, char *solution)
 	case_three_a(a, solution);
 }
 
-int	check_a_ra(t_stack *a, char *solution, int med, int *rewind)
+int		check_a_ra(t_stack *a, char *solution, int med, int *rewind)
 {
 	t_lstnum	*tmp;
 	int			i;
@@ -75,7 +75,7 @@ int	check_a_ra(t_stack *a, char *solution, int med, int *rewind)
 	return (1);
 }
 
-void		cal_stack_a(t_stack *a, t_stack *b, int med, char *solut)
+void	cal_stack_a(t_stack *a, t_stack *b, int med, char *solut)
 {
 	int	rewind;
 
